@@ -1,0 +1,89 @@
+{
+  "retrieved_utc": "2026-09-28",
+  "scowl_git_commit": "7f2f4078354752045ee16a041605686561122185",
+  "downloads": [
+    {
+      "file": "SCOWL-en_US.txt",
+      "url": "https://raw.githubusercontent.com/en-wl/wordlist-diff/7f2f4078354752045ee16a041605686561122185/en_US.txt",
+      "sha256": "45a4dd29b86234fbabce26f33272466bb5572db6fdca1470c4f218e6b666a56d",
+      "bytes": 1024440,
+      "license": "SCOWL/ESDB permissive notice",
+      "use": "EN_US DCT"
+    },
+    {
+      "file": "SCOWL-en_GB-ise.txt",
+      "url": "https://raw.githubusercontent.com/en-wl/wordlist-diff/7f2f4078354752045ee16a041605686561122185/en_GB-ise.txt",
+      "sha256": "3febf4057b95dd654e8c9421197fd8c08cf8e7ae9c4a457228da9ec36af6083c",
+      "bytes": 1021473,
+      "license": "SCOWL/ESDB permissive notice",
+      "use": "EN_GB DCT"
+    },
+    {
+      "file": "SCOWL-Copyright",
+      "url": "https://raw.githubusercontent.com/en-wl/wordlist-diff/7f2f4078354752045ee16a041605686561122185/Copyright",
+      "sha256": "71bffd4b74ad47fff01c8b3c666e77da92737854e568850d8728024e0a53f304",
+      "bytes": 4903,
+      "license": "SCOWL/ESDB permissive notice",
+      "use": "English license"
+    },
+    {
+      "file": "german.7z",
+      "url": "https://downloads.sourceforge.net/project/germandict/german.7z",
+      "sha256": "978e83873a5fc12dd75fa11b6c02b8120e143da8eb457f48cdb377ae40a60967",
+      "bytes": 6271782,
+      "license": "Public domain",
+      "use": "DE DCT"
+    },
+    {
+      "file": "germandict-readme.txt",
+      "url": "https://downloads.sourceforge.net/project/germandict/readme.txt",
+      "sha256": "dea6b630d45e1e6f69cc1721bbe71d7b7d731e284b3eaaa3857eb305e49d6ff9",
+      "bytes": 5051,
+      "license": "Public domain",
+      "use": "German documentation"
+    },
+    {
+      "file": "moby-french.txt",
+      "url": "https://www.gutenberg.org/files/3206/files/french.txt",
+      "sha256": "6e3e583a24c90e041648fbf328726d68d7a34c5568d8a9bfdbb44dd45ec20798",
+      "bytes": 1663013,
+      "license": "Public domain grant by author, January 2001",
+      "use": "FR DCT"
+    },
+    {
+      "file": "sv.leksikon.tar.gz",
+      "url": "https://www.nb.no/sbfil/leksikalske_databaser/leksikon/sv.leksikon.tar.gz",
+      "sha256": "4cfd9d86891a9f057f28ead716a1e0c08faefc754aaaae23db615360a561848b",
+      "bytes": 22041470,
+      "license": "CC0-1.0",
+      "use": "SV DCT and exact compound HYP exceptions"
+    },
+    {
+      "file": "CC0-1.0.txt",
+      "url": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/CC0-1.0.txt",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "bytes": 7048,
+      "license": "CC0-1.0",
+      "use": "Swedish license"
+    },
+    {
+      "file": "wn3.1.dict.tar.gz",
+      "url": "https://wordnetcode.princeton.edu/wn3.1.dict.tar.gz",
+      "sha256": "3f7d8be8ef6ecc7167d39b10d66954ec734280b5bdcd57f7d9eafe429d11c22a",
+      "bytes": 16358468,
+      "license": "Princeton WordNet 3.1 permissive license",
+      "use": "EN_US and EN_GB THS"
+    }
+  ],
+  "german_extracted_sha256": "152be9d5e055670ffa59c1833675db5f55e04ee5547d4af2ac6c1d2d7bcf67a2",
+  "primary_license_evidence": {
+    "SCOWL": "https://github.com/en-wl/wordlist-diff/blob/7f2f4078354752045ee16a041605686561122185/Copyright",
+    "DE": "https://sourceforge.net/projects/germandict/",
+    "FR": "https://www.gutenberg.org/cache/epub/3206/pg3206-images.html",
+    "SV": "https://www.nb.no/sprakbanken/ressurskatalog/en/oai-nb-no-sbr-22/",
+    "WordNet": "https://wordnet.princeton.edu/license-and-commercial-use"
+  },
+  "derived_license_notice": {
+    "WordNet-3.1-LICENSE.txt": "Extracted verbatim, removing line number prefixes only, from dict/data.noun in wn3.1.dict.tar.gz."
+  }
+}

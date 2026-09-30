@@ -1,0 +1,232 @@
+# OpenSpellGEOS linguistic data sources and limitations
+
+The runtime and the host-side replacement tools are original Apache-2.0 code.
+The data comes from the independently licensed public sources listed here.
+Keep the full notices in licenses/ and lexicons/ with a distribution. Conversion
+into DCT, THS or HYP does not erase an upstream copyright or license.
+
+No supplied proprietary dictionary, thesaurus or hyphenation bytes were read or
+used to construct these data files. Their sizes are a separate project concern.
+The supplied GDI preference descriptor can be used to understand registration.
+
+# Rights selection
+
+The selected sources use CC0, a public-domain dedication, MIT, or explicit
+permissive redistribution and modification grants. The Apache Software
+Foundation's third-party policy lists MIT/BSD and public-domain/CC0 material as
+acceptable categories: https://www.apache.org/legal/resolved.html . This is the
+compatibility model used for this distribution; it is not a claim that every
+underlying source was originally published under Apache-2.0.
+
+No GPL, LGPL, EUPL, CC-BY-SA, CC-BY, MPL or LPPL linguistic data is included.
+In particular, LibreOffice's Swedish hyphenation data and the TeX Swedish
+patterns were rejected for this strict source-license selection. WOLF,
+OpenThesaurus, OdeNet and Swesaurus were not imported. The license of a converter
+or a repository's top-level program does not determine a wordlist's license.
+
+# English spelling and thesaurus
+
+EN_US.words.txt and EN_GB.words.txt are separate SCOWL-derived release wordlists,
+with source notices and the exact release identities recorded in
+lexicon-provenance.json. British and American spelling are not combined.
+
+EN.thesaurus.json contains Princeton WordNet 3.1 synonym groups. It is shared by
+the two English locales because WordNet does not supply two fully independent
+regional thesauri. Alternatives can therefore include regional spellings.
+Source senses and parts of speech are retained, with labels shortened to fit the
+legacy UI. It is not an arbitrary list of related words or hypernyms.
+
+Primary license evidence:
+https://wordnet.princeton.edu/license-and-commercial-use
+
+The lexical normalizer records word counts, rejected rows and UI-limit omissions
+in normalized/lexicon-normalization-report.json. See LEXICON-SOURCES.md for
+source-specific vocabulary and historical limitations.
+
+# German spelling
+
+DE.words.txt uses the public-domain German dictionary obtained from its author's
+Free German Dictionary project. It contains a very large set of explicit forms
+and compounds, over two million unique words before runtime-format filtering.
+The dictionary is disk-backed; a large file is not loaded into conventional RAM.
+Its vintage and the accepted spellings still need native-language quality review.
+No productivity rule invents additional German compounds at runtime.
+
+# French spelling
+
+FR.words.txt uses Grady Ward's public-domain Moby Language II French list.
+Its historical ASCII accent notation is converted deterministically to Unicode.
+It is an older vocabulary source, not a certified current French orthographic
+reference. That limitation is independent of the runtime code and is not hidden
+by describing the list as a modern comprehensive dictionary.
+
+# Swedish spelling and hyphenation
+
+SV.words.txt comes from the Swedish NST pronunciation lexicon distributed by the
+National Library of Norway under CC0. Explicit garbage records are removed.
+Pronunciations are not used to guess spelling or syllable boundaries.
+
+SV.hyp-exceptions.json contains only compound boundaries explicitly present in
+the NST orthographic compound field. Joining all components must reproduce the
+written surface form exactly, and every component must have at least two letters.
+Conflicting records are handled conservatively by the normalizer. Words with
+changed/overlapping letters or one-letter linking elements are omitted.
+
+ATTENTION: This is conservative compound-only hyphenation. It does not supply
+all valid syllable breaks within simple words or within compound components.
+The format and runtime support a future independent permissive Swedish pattern
+set without an ABI change. No LPPL or MPL pattern data has been smuggled into the
+exceptions by running a different converter.
+
+Primary data and license page:
+https://www.nb.no/sprakbanken/ressurskatalog/en/oai-nb-no-sbr-22/
+
+# Luxembourgish spelling and thesaurus
+
+The Zenter fir d'Letzebuerger Sprooch publishes the LOD linguistic articles,
+search index and inflection tables under CC0. The imported snapshot is dated
+2026-07-27. Exact URLs, byte sizes and SHA-256 fingerprints are in
+sources-hyphen-lod.json.
+
+LB.words.txt contains the search forms explicitly marked suggest=true, lexical
+entry headwords, explicitly recorded inflection forms and nRuleForm attributes,
+and single-word leaves of the separate inflection tables. Multiword expressions
+are not split into guessed vocabulary. Search aliases marked suggest=false are
+excluded, including automatically generated suggestions. This importer keeps
+116,235 distinct forms before the target code-page and length filters.
+
+The n-deletion alternatives are accepted as spellings. A wordlist checker does
+not determine whether the surrounding sentence licenses each n-rule variant.
+That requires grammatical context, which the legacy Spell interface does not
+provide to this implementation.
+
+LB.thesaurus.json uses only the original explicit synonym elements attached to
+one source meaning. It does not infer synonymy from common translations, merge
+unrelated senses, or compute a transitive closure. It contains 7,282 headwords
+before target-code-page normalization. Idioms and alternatives that exceed the
+legacy UI's 26-character replacement limit are omitted and counted. All lexical
+registers in the source remain possible; the limited UI does not expose every
+upstream register annotation.
+
+Primary source pages:
+https://data.public.lu/en/datasets/letzebuerger-online-dictionnaire-lod-linguistesch-daten/
+https://data.public.lu/en/datasets/letzebuerger-online-dictionnaire-lod-index-vun-der-sich-funktioun/
+https://data.public.lu/en/datasets/letzebuerger-online-dictionnaire-lod-flexiounstabellen/
+
+ATTENTION: No Apache-compatible Luxembourgish hyphenation corpus was acquired.
+LOD has pronunciation fields but no orthographic hyphenation field. An empty LB
+HYP file is an explicit no-break fallback, not complete Luxembourgish hyphenation.
+A reviewed permissive pattern set or exception lexicon is still required to close
+this language-data gap. German patterns must not be silently relabeled as LB.
+
+# German, French and Swedish thesauri
+
+These three thesauri use the CC0 portion of Sweden's National Term Bank released
+by the Swedish Institute for Language and Folklore. The publisher identifies
+this release as the portion that is not copyrighted. The three archive groups
+are government/public administration, TNC terminology and Swedish computer terms.
+
+The NTRF field TE identifies a preferred term; SYTE identifies an explicit
+synonym. Only those fields within the same language and the same concept record
+become alternatives. UPTE search aliases, discouraged terms, related-term links
+and translations from other languages do not become synonyms. For example,
+'adressikon' gets 'adressymbol', but not the discouraged 'URL-ikon'.
+
+German has 3,768 headwords, French 2,443, and Swedish 8,963 before target-code-page
+normalization. These are useful specialist terminology thesauri, not full
+substitutes for general-vocabulary thesauri. Some source glossaries are historic.
+Definitions are retained as short labels where available. An unknown part of
+speech remains unknown; it is not guessed to be a noun.
+
+A tempting alternative was deliberately discarded after source inspection:
+LOD can put translations of contrasting secondary headwords in one meaning.
+Thus 'Old Testament' and 'New Testament' can occur together without being
+synonyms. The shipped German and French thesauri do not derive links this way.
+
+Primary source/license catalogue:
+https://researchdata.se/en/catalogue/dataset/2026-140
+
+Exact public source archive directory:
+https://sprakresurser.isof.se/Termlistor_fran_Rikstermbanken/
+
+# American/British English, German and French hyphenation
+
+These four HYP files are built from the literal pattern and exception blocks in
+the TeX hyph-utf8 files. Each individual file's header was checked. The package's
+top-level license alone was not used as evidence.
+
+American English uses Gerard D.C. Kuiken's permissive patterns, with 4,938
+patterns and 14 explicit exceptions. British English uses the MIT-licensed
+Dominik Wujastyk/Graham Toal patterns, with 8,527 patterns and 8 exceptions.
+Both use a minimum of two letters before and three after a break. The region
+files are deliberately distinct because the pattern sets are distinct.
+
+German uses the MIT-licensed Deutschsprachige Trennmustermannschaft reformed
+orthography file dated 2024-02-28, with 36,709 patterns. French uses the
+MIT-licensed Daniel Flipo/Bernard Gaulle/Arthur Reutenauer file V2.13,
+2016-05-12, with 1,145 patterns. Both use two-letter left and right minima.
+
+Full source notices are in licenses/hyph-*.txt. Source URLs and hashes are in
+sources-hyphen-lod.json. The raw TeX files are available from:
+https://github.com/hyphenation/tex-hyphen/tree/master/hyph-utf8/tex/generic/hyph-utf8/patterns/tex
+
+# Reproducing normalized snapshots
+
+The normalized snapshots are build inputs, so ordinary rebuilding of DCT/THS/HYP
+does not require network access or the much larger upstream datasets. Use the
+project's binary builder instructions to build those snapshots into DICTS.
+
+To reproduce the snapshots from the exact upstream inputs, keep this directory
+structure, manifests, normalizers and notices together, then run:
+
+    python3 fetch_lexicons.py
+    python3 fetch_sources.py
+    python3 normalize_lexicons.py
+    python3 normalize_lod_terms.py --builder ../buildlex.py
+    python3 check_normalization.py
+
+The host needs Python 3 and the extractor described by fetch_lexicons.py for the
+German 7z archive. Normalization is a host-side operation; it is not intended to
+run on a 286. It can use hundreds of megabytes while parsing source XML and
+sorting dictionaries. The target runtime does not inherit that memory cost.
+
+A matching cached file is reused. A hash mismatch stops acquisition instead of
+silently accepting an upstream revision. Some web evidence snapshots change
+frequently and are not required for normalization; the fetcher leaves those
+review snapshots alone. A raw source URL can disappear: use the supplied
+normalized snapshot for offline rebuilding, or obtain the exact hash-matching
+upstream archive from a trusted mirror and place it at the recorded path.
+
+The check script exercises real source-boundary regressions and target format
+limits, including exclusion of non-synonymous translations and NTRF aliases.
+The final binary builder additionally reports words and senses rejected for
+encoding or target-length constraints. These counts must accompany release
+claims; source counts are not necessarily final installed entry counts.
+
+# Compact release selection
+
+OpenSpellGEOS now limits each DCT, THS and HYP file to 500,000 bytes or less.
+The normalized source inventories below describe the available upstream input,
+not the number of words retained in the compact release. BUILD.json records the
+selected counts, omitted counts, exact bytes and selection policy.
+
+Pinned ranked word lists prefer authored common/function words and appropriate
+source evidence. English uses historical WordNet semantic tag counts and
+source-attested inflection relatives. Swedish uses NST reference/source sets,
+not its unused frequency field. Luxembourgish uses LOD example attestations
+and reviewed headwords; dictionary examples are not a general corpus. German
+and French use reviewed LOD translation headwords as a heuristic for broad
+lexical coverage. Translation terms only rank existing spellings; they never
+create thesaurus synonyms. Shorter unranked words supply a deterministic
+fallback. None of this is represented as a modern multilingual frequency list.
+
+Sources/make_priorities.py, Data/compact-core-words.json and
+Data/compact-priority-report.json document the exact ranking recipe. The
+ranked inputs preserve the licenses of their sources. The small authored
+Swedish supplement Data/SV.core-supplement.txt restores fourteen basic words
+absent from the pinned NST source and is licensed under Apache-2.0. Its full
+license is included in licenses/Apache-2.0.txt (DICTS/LICENSES/APACHE2.TXT).
+
+Thesaurus payloads retain at most two source senses and four source synonyms
+per sense. Hyphenation only covers retained dictionary words and omits empty
+no-break records. No runtime format or target memory requirement changes.

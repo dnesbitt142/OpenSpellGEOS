@@ -1,0 +1,95 @@
+[
+  {
+    "path": "hyphen/hyph-en-us.tex",
+    "url": "https://raw.githubusercontent.com/hyphenation/tex-hyphen/master/hyph-utf8/tex/generic/hyph-utf8/patterns/tex/hyph-en-us.tex",
+    "license": "LicenseRef-Kuiken-permissive",
+    "license_evidence": "https://raw.githubusercontent.com/hyphenation/tex-hyphen/master/hyph-utf8/tex/generic/hyph-utf8/patterns/tex/hyph-en-us.tex",
+    "sha256": "f4ffcd96c5cbc886bdad23f95dcae8edc3cd3620eae62f7946eceda97c4e68f8",
+    "bytes": 34128,
+    "retrieved": "2026-09-28"
+  },
+  {
+    "path": "hyphen/hyph-en-gb.tex",
+    "url": "https://raw.githubusercontent.com/hyphenation/tex-hyphen/master/hyph-utf8/tex/generic/hyph-utf8/patterns/tex/hyph-en-gb.tex",
+    "license": "MIT",
+    "license_evidence": "https://raw.githubusercontent.com/hyphenation/tex-hyphen/master/hyph-utf8/tex/generic/hyph-utf8/patterns/tex/hyph-en-gb.tex",
+    "sha256": "e95bb4ab350f620c41c231c4785d7bdb4f91949d3e631b30e08b3ead3c340a52",
+    "bytes": 58474,
+    "retrieved": "2026-09-28"
+  },
+  {
+    "path": "hyphen/hyph-de-1996.tex",
+    "url": "https://raw.githubusercontent.com/hyphenation/tex-hyphen/master/hyph-utf8/tex/generic/hyph-utf8/patterns/tex/hyph-de-1996.tex",
+    "license": "MIT",
+    "license_evidence": "https://raw.githubusercontent.com/hyphenation/tex-hyphen/master/hyph-utf8/tex/generic/hyph-utf8/patterns/tex/hyph-de-1996.tex",
+    "sha256": "374ad1ce3263f8a2791ec070ef9b516c532dae64456f3fb656e617e8ae53a9d3",
+    "bytes": 274609,
+    "retrieved": "2026-09-28"
+  },
+  {
+    "path": "hyphen/hyph-fr.tex",
+    "url": "https://raw.githubusercontent.com/hyphenation/tex-hyphen/master/hyph-utf8/tex/generic/hyph-utf8/patterns/tex/hyph-fr.tex",
+    "license": "MIT",
+    "license_evidence": "https://raw.githubusercontent.com/hyphenation/tex-hyphen/master/hyph-utf8/tex/generic/hyph-utf8/patterns/tex/hyph-fr.tex",
+    "sha256": "526cad6fe8f52fcd3caa3fcaf667cb1740cfc14bca198680e00dc343a84594de",
+    "bytes": 30353,
+    "retrieved": "2026-09-28"
+  },
+  {
+    "path": "lod/art.zip",
+    "url": "https://download.data.public.lu/resources/letzebuerger-online-dictionnaire-lod-linguistesch-daten/20260727-095857/260727-new-lod-art.zip",
+    "license": "CC0-1.0",
+    "license_evidence": "https://data.public.lu/en/datasets/letzebuerger-online-dictionnaire-lod-linguistesch-daten/",
+    "sha256": "61d01144f5477eebbd0440b21f77656aa21119c7d72ba193edaeeebe90be901c",
+    "bytes": 10782730,
+    "retrieved": "2026-09-28"
+  },
+  {
+    "path": "licenses/lod-art-license-evidence.html",
+    "url": "https://data.public.lu/en/datasets/letzebuerger-online-dictionnaire-lod-linguistesch-daten/",
+    "license": "Evidence snapshot only; the linked DATASET is CC0-1.0",
+    "license_evidence": "https://data.public.lu/en/datasets/letzebuerger-online-dictionnaire-lod-linguistesch-daten/",
+    "sha256": "0d58b6544a75778d40369153de47fe5da6167a9cafaae3aca885d888eff31c07",
+    "bytes": 238037,
+    "retrieved": "2026-09-28",
+    "use": "License evidence; excluded from release data"
+  },
+  {
+    "path": "lod/search.zip",
+    "url": "https://download.data.public.lu/resources/letzebuerger-online-dictionnaire-lod-index-vun-der-sich-funktioun/20260727-095933/260727-new-lod-search.zip",
+    "license": "CC0-1.0",
+    "license_evidence": "https://data.public.lu/en/datasets/letzebuerger-online-dictionnaire-lod-index-vun-der-sich-funktioun/",
+    "sha256": "5da8d3c86be5ef9556eeb8dce9e92aef879ff1bc121dc8785c1dc83d2996d5b9",
+    "bytes": 8472682,
+    "retrieved": "2026-09-28"
+  },
+  {
+    "path": "licenses/lod-search-license-evidence.html",
+    "url": "https://data.public.lu/en/datasets/letzebuerger-online-dictionnaire-lod-index-vun-der-sich-funktioun/",
+    "license": "Evidence snapshot only; the linked DATASET is CC0-1.0",
+    "license_evidence": "https://data.public.lu/en/datasets/letzebuerger-online-dictionnaire-lod-index-vun-der-sich-funktioun/",
+    "sha256": "be497d581bf6bcac4927be2ed46d60be83ac3f9e0966da8a1c459c40c3c6d04e",
+    "bytes": 283430,
+    "retrieved": "2026-09-28",
+    "use": "License evidence; excluded from release data"
+  },
+  {
+    "path": "lod/tab.zip",
+    "url": "https://download.data.public.lu/resources/letzebuerger-online-dictionnaire-lod-flexiounstabellen/20260727-101009/260727-new-lod-tab.zip",
+    "license": "CC0-1.0",
+    "license_evidence": "https://data.public.lu/en/datasets/letzebuerger-online-dictionnaire-lod-flexiounstabellen/",
+    "sha256": "d66fd175b5558c761a3dee934505c9c7cee31ccdf9e7679e212bae902451d1e8",
+    "bytes": 1270989,
+    "retrieved": "2026-09-28"
+  },
+  {
+    "path": "licenses/lod-tab-license-evidence.html",
+    "url": "https://data.public.lu/en/datasets/letzebuerger-online-dictionnaire-lod-flexiounstabellen/",
+    "license": "Evidence snapshot only; the linked DATASET is CC0-1.0",
+    "license_evidence": "https://data.public.lu/en/datasets/letzebuerger-online-dictionnaire-lod-flexiounstabellen/",
+    "sha256": "9c13f7c7625e6955d786c379d904a5e0fd4a7d7d3a93a981b3633d2d95eca046",
+    "bytes": 282783,
+    "retrieved": "2026-09-28",
+    "use": "License evidence; excluded from release data"
+  }
+]

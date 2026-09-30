@@ -1,0 +1,57 @@
+[
+  {
+    "path": "rikstermbanken/Offentlig_verksamhet.zip",
+    "url": "https://sprakresurser.isof.se/Termlistor_fran_Rikstermbanken/Offentlig_verksamhet.zip",
+    "sha256": "fa6212b80233350dedf6ae57ed8b56ea773316401968856d921eca98e34f05ec",
+    "bytes": 5401520,
+    "license": "CC0-1.0",
+    "license_evidence": "https://researchdata.se/en/catalogue/dataset/2026-140",
+    "retrieved": "2026-09-28"
+  },
+  {
+    "path": "rikstermbanken/Svenska_datatermgruppen.zip",
+    "url": "https://sprakresurser.isof.se/Termlistor_fran_Rikstermbanken/Svenska_datatermgruppen.zip",
+    "sha256": "5cd25e14d02ae77002eff59ffee52855b9fe9a1ccfa79fe9420ed8bdfc6e9ed4",
+    "bytes": 49420,
+    "license": "CC0-1.0",
+    "license_evidence": "https://researchdata.se/en/catalogue/dataset/2026-140",
+    "retrieved": "2026-09-28"
+  },
+  {
+    "path": "rikstermbanken/TNC_ordlistor.zip",
+    "url": "https://sprakresurser.isof.se/Termlistor_fran_Rikstermbanken/TNC_ordlistor.zip",
+    "sha256": "3af73398d138d11af2cfeda95fe3ed62e98775b6b106651366c8857a7ce5bf46",
+    "bytes": 1630173,
+    "license": "CC0-1.0",
+    "license_evidence": "https://researchdata.se/en/catalogue/dataset/2026-140",
+    "retrieved": "2026-09-28"
+  },
+  {
+    "path": "rikstermbanken/metadata.xml",
+    "url": "https://sprakresurser.isof.se/Termlistor_fran_Rikstermbanken/metadata.xml",
+    "sha256": "8c4d29ac4f283f746d62e1186415b8f439ef1dbc1fbd46bcbef9fe8cc1422465",
+    "bytes": 590,
+    "license": "CC0-1.0",
+    "license_evidence": "https://researchdata.se/en/catalogue/dataset/2026-140",
+    "retrieved": "2026-09-28"
+  },
+  {
+    "path": "licenses/CC0-1.0.txt",
+    "url": "https://raw.githubusercontent.com/spdx/license-list-data/main/text/CC0-1.0.txt",
+    "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "bytes": 7048,
+    "license": "CC0-1.0",
+    "license_evidence": "https://researchdata.se/en/catalogue/dataset/2026-140",
+    "retrieved": "2026-09-28"
+  },
+  {
+    "path": "licenses/rikstermbanken-evidence.html",
+    "url": "https://researchdata.se/en/catalogue/dataset/2026-140",
+    "sha256": "26598e6dba16bd61220d71106ffa17c57fa823149cbd0bfbf7904d28f62d9b00",
+    "bytes": 284834,
+    "license": "Evidence snapshot only; the linked DATASET is CC0-1.0",
+    "license_evidence": "https://researchdata.se/en/catalogue/dataset/2026-140",
+    "retrieved": "2026-09-28",
+    "use": "License evidence; excluded from release data"
+  }
+]
