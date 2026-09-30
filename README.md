@@ -32,5 +32,5 @@ Python tools for creating your own dictionaries, thesaurus and hyphenation files
 
 ## Other notes
 * No hyphenation supplied for Luxembourgish
-* See [NOTICES.TXT](https://github.com/dnesbitt142/OpenSpellGEOS/blob/main/Dictionaries/NOTICES.TXT) for further limitations.details.
+* See [NOTICES.TXT](https://github.com/dnesbitt142/OpenSpellGEOS/blob/main/Dictionaries/NOTICES.TXT) for further limitations/details.
 * Dictionary and thesaurus data files are small (around 500KB so do not contain a large word set).
