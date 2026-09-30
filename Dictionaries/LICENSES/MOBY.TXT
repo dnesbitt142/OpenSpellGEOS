@@ -1,0 +1,16 @@
+Moby Language II, by Grady Ward
+
+The author's updated documentation states:
+"Public Domain material by grant from the author, January, 2001."
+
+Primary source (retrieved 2026-09-28):
+https://www.gutenberg.org/cache/epub/3206/pg3206-images.html
+Section: MOBY (tm) LANGUAGE II DOCUMENTATION NOTES
+
+The French source used here is the accompanying french.txt, downloaded from:
+https://www.gutenberg.org/files/3206/files/french.txt
+
+The binary dictionary contains lexical data and does not contain or claim the
+Project Gutenberg trademark. The January 2001 public-domain grant supersedes
+older commercial-license statements in historical 1993 Moby mirrors. Those
+older mirrors are not inputs to this build.

@@ -1,0 +1,12 @@
+NST Pronunciation Lexicon for Swedish
+Originally produced by Nordic Language Technology (NST), 2003-02-24.
+Made available by Sprakbanken; rights holder: National Library of Norway.
+Persistent identifier: hdl:21.11146/22
+
+The rights holder's catalogue declares CC Zero (public domain).
+Primary source (retrieved 2026-09-28):
+https://www.nb.no/sprakbanken/ressurskatalog/en/oai-nb-no-sbr-22/
+The full CC0 1.0 legal text is included in CC0-1.0.txt.
+
+Only written word forms and exact compound boundaries are used. The
+pronunciation transcriptions are not used for spelling or hyphenation.

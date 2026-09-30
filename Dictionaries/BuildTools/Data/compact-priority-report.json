@@ -1,0 +1,80 @@
+{
+  "profiles": [
+    {
+      "missing_core_seeds": [
+        "colour",
+        "centre",
+        "theatre",
+        "metre",
+        "programme",
+        "organise",
+        "favour"
+      ],
+      "priority": "EN_US.priority.txt",
+      "priority_kind": "source-guided-heuristic",
+      "priority_source": "Authored essentials; historical WordNet semantic tag counts and attested inflection relatives; remaining WordNet lemmas.",
+      "ranked_words": 79808,
+      "sha256": "8f71b9bb24c0b977762c3bfe147cc917ee3614f1e892386516731cfdba6d220f",
+      "stem": "EN_US"
+    },
+    {
+      "missing_core_seeds": [
+        "color",
+        "center",
+        "theater",
+        "organize",
+        "favor"
+      ],
+      "priority": "EN_GB.priority.txt",
+      "priority_kind": "source-guided-heuristic",
+      "priority_source": "Authored essentials; historical WordNet semantic tag counts and attested inflection relatives; remaining WordNet lemmas.",
+      "ranked_words": 79759,
+      "sha256": "f1f15befe3ac35e1b18c3ac549625351f343984f51198acbd0b8bde66474098f",
+      "stem": "EN_GB"
+    },
+    {
+      "missing_core_seeds": [],
+      "priority": "DE_DE.priority.txt",
+      "priority_kind": "source-guided-heuristic",
+      "priority_source": "Authored essentials and attested relatives; existing words also present as reviewed LOD German translation headwords, then attested relatives. Heuristic, not native corpus frequency.",
+      "ranked_words": 73124,
+      "sha256": "06102d8fa7e2899c4f670e4cb5e615a85e5df2a41f2c5866f3d3b0eaa1aff026",
+      "stem": "DE_DE"
+    },
+    {
+      "missing_core_seeds": [],
+      "priority": "SV_SE.priority.txt",
+      "priority_kind": "source-guided-heuristic",
+      "priority_source": "Authored essentials; NST enter_se membership; observed speech/dictation source sets; lexical source analyses. No numeric frequency ranking.",
+      "ranked_words": 191451,
+      "sha256": "89cd27bdbafb54fe5ff2b19ecaa43cf9f57d4f3d22613734409936b65af9fc44",
+      "stem": "SV_SE"
+    },
+    {
+      "missing_core_seeds": [],
+      "priority": "LB_LU.priority.txt",
+      "priority_kind": "source-guided-heuristic",
+      "priority_source": "Authored essentials; LOD dictionary-example token attestations; reviewed LOD lemmas. Examples are not a general-language corpus.",
+      "ranked_words": 46245,
+      "sha256": "36b6de2efdee54d2240813e8da9332fe792640341b2179f5a38425092345eadf",
+      "stem": "LB_LU"
+    },
+    {
+      "missing_core_seeds": [],
+      "priority": "FR_FR.priority.txt",
+      "priority_kind": "source-guided-heuristic",
+      "priority_source": "Authored essentials and attested relatives; existing words also present as reviewed LOD French translation headwords, then attested relatives. Heuristic, not native corpus frequency.",
+      "ranked_words": 36567,
+      "sha256": "dc5fb1b991e196c3af28865cb4046095c15e9808681a78e4845eaedfd0c30a15",
+      "stem": "FR_FR"
+    }
+  ],
+  "project": "OpenSpellGEOS",
+  "seed_sha256": "42bc621e13e2bfcf80e58ead0a2e870b136ee271fd2cebc4ac54bb3b91d60a68",
+  "sources": {
+    "lexicons/sv.leksikon.tar.gz": "4cfd9d86891a9f057f28ead716a1e0c08faefc754aaaae23db615360a561848b",
+    "lexicons/wn3.1.dict.tar.gz": "3f7d8be8ef6ecc7167d39b10d66954ec734280b5bdcd57f7d9eafe429d11c22a",
+    "lod/art.zip": "61d01144f5477eebbd0440b21f77656aa21119c7d72ba193edaeeebe90be901c"
+  },
+  "version": 1
+}

@@ -1,0 +1,720 @@
+{
+  "format": "OLX1",
+  "inputs": {
+    "DE.hyp-exceptions.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "DE.patterns.txt": "b24b9d29ef0acbac93d2b7d4ef175dc27c994deb61fb04f06e2a598c93bde67f",
+    "DE.thesaurus.json": "b5199e03050d13a5581333848388f8ded971eacbdcad1e4a9e25af42039de7cc",
+    "DE.words.txt": "39646a0972f48f7a2a088a7d7e063b71f4ff36200f5d8cef9a60e9774a080474",
+    "DE_DE.priority.txt": "06102d8fa7e2899c4f670e4cb5e615a85e5df2a41f2c5866f3d3b0eaa1aff026",
+    "EN.thesaurus.json": "7089f9b648b28eb28dc97177213d911be8ad43daea724180bcd60115d0729c45",
+    "EN_GB.hyp-exceptions.json": "df83c73d01d06302cf2f810952fdd1c30e8169c3926017dd89ed16c469e986f0",
+    "EN_GB.patterns.txt": "8f8d20097ae12d71bccd96eb4b299e78341d770d05576247729a54123c4ae388",
+    "EN_GB.priority.txt": "f1f15befe3ac35e1b18c3ac549625351f343984f51198acbd0b8bde66474098f",
+    "EN_GB.words.txt": "3febf4057b95dd654e8c9421197fd8c08cf8e7ae9c4a457228da9ec36af6083c",
+    "EN_US.hyp-exceptions.json": "53f6021cc66fbc690d0f2c31dbfd3cba1207376e701f6f8175947079b784ba9a",
+    "EN_US.patterns.txt": "665b20f63ea96e0768baebd3ad7940a4069a763d7abd4efbb6647dfba77a79a8",
+    "EN_US.priority.txt": "8f71b9bb24c0b977762c3bfe147cc917ee3614f1e892386516731cfdba6d220f",
+    "EN_US.words.txt": "45a4dd29b86234fbabce26f33272466bb5572db6fdca1470c4f218e6b666a56d",
+    "FR.hyp-exceptions.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "FR.patterns.txt": "97cd0f41cebf6b03e1d0e35171772b2873b48f2f3697ae1d1afdf94493a8878e",
+    "FR.thesaurus.json": "043a51009d82c835ba5be5d4c0a16449ad141462956f22da7dd2ff8bbca2aa89",
+    "FR.words.txt": "55dc0a9de96c0dc370f1ffd40426b969599dad8592941fe0716040a977cba609",
+    "FR_FR.priority.txt": "dc5fb1b991e196c3af28865cb4046095c15e9808681a78e4845eaedfd0c30a15",
+    "LB.thesaurus.json": "c3669bbfd64540fd92f196ee96add509ba633900d934050e496c46be85693722",
+    "LB.words.txt": "e738497ca521ce6cd36d1d3c12b37f704c5b7ae05862baa8285e81e3864f0560",
+    "LB_LU.priority.txt": "36b6de2efdee54d2240813e8da9332fe792640341b2179f5a38425092345eadf",
+    "SV.core-supplement.txt": "50497db6a6a0b97f7cb718e9135743802ca685a15ce20ef7ec170692ea9f1cd7",
+    "SV.hyp-exceptions.json": "9620c9adbb34b01138684f869a1b24ea4cf9fd49b2f0325f7afff2a77f82f8ff",
+    "SV.thesaurus.json": "8f06d119a67cc3e0d70dfec0b6a2a860e7ecc8d6e5e82a937ef7fa4e6ced562f",
+    "SV.words.txt": "dff88ed5f83a8c37f1ec84e84faf9bd619c379516ebfc5314c949f2a99d16fd3",
+    "SV_SE.priority.txt": "89cd27bdbafb54fe5ff2b19ecaa43cf9f57d4f3d22613734409936b65af9fc44",
+    "compact-core-words.json": "42bc621e13e2bfcf80e58ead0a2e870b136ee271fd2cebc4ac54bb3b91d60a68",
+    "compact-priority-report.json": "13cde374cd65375409efbbb18c684b574e659abb15abec68d1f1277792bc6d8f",
+    "lexicon-normalization-report.json": "037b3af3b94a0cc59e931bbe0147cc248f00ba348543d6bd9382c7427b63b18a",
+    "lod-terms-normalization.json": "15cd15a771f679a139c3b53a1ab11d32a65a38b6d86353219fa78152a6d14ee3"
+  },
+  "max_file_bytes": 500000,
+  "notices": {
+    "LICENSES/APACHE2.TXT": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+    "LICENSES/CC0.TXT": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "LICENSES/GERMAN.TXT": "5907c1c4d208524f6f4429b290ca5661c0a78555c841010c37b634726685d417",
+    "LICENSES/HYPDE.TXT": "48cf67b34c49c4110dbfee4085768e4f8a0b2c28042903479869a463557957b0",
+    "LICENSES/HYPENGB.TXT": "5f5d5ab94023cf4f17de75d4ed2ebf1d9a676b38789c5be370b1dbaced1c4c05",
+    "LICENSES/HYPENUS.TXT": "f18470774bf7d57533aefe1f049a99443667e83ca9de2431ff2dd36bab678a8c",
+    "LICENSES/HYPFR.TXT": "49ea15365423316082ab31c4ac1a2681863c7e138fba10e452be76210fe691aa",
+    "LICENSES/MOBY.TXT": "9ef5fa8436be7f399f7f1c4c916bbc96bb07cf9391a4042700741276d7760c1e",
+    "LICENSES/NST.TXT": "936065b05d36c5392f6faf8647042b4b2c0fcc54dfb19fa3471424cfa869c6a4",
+    "LICENSES/SCOWL.TXT": "71bffd4b74ad47fff01c8b3c666e77da92737854e568850d8728024e0a53f304",
+    "LICENSES/WORDNET.TXT": "5d6a235d57cc076574f81156ff7211c5dff22914219994ffa29f6fd1c30feeb7",
+    "NOTICES.TXT": "c2192ba00b2e58bc59b867e4556a896b6a112fe1f335d0974124d55aa880fe86"
+  },
+  "profiles": [
+    {
+      "coverage": {
+        "hyphenation": "patterns",
+        "thesaurus": "general",
+        "vocabulary": "compact source-guided subset"
+      },
+      "files": [
+        {
+          "blocks": 459,
+          "bytes": 499915,
+          "entries": 61720,
+          "file": "EN_US.DCT",
+          "kind": 1,
+          "language": "EN_US",
+          "selection": {
+            "candidate_records": 109140,
+            "estimated_bytes": 499915,
+            "max_bytes": 500000,
+            "omitted_records": 47420,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 61720,
+            "ranking_considered": 93636,
+            "selected_records": 61720
+          },
+          "sha256": "13d0562165102f10e8b59205d87bef954a24f9af9363d7cf283e92ea3f8e3c24",
+          "vocabulary": {
+            "candidate_forms": 109140,
+            "primary_file": "EN_US.words.txt",
+            "primary_forms": 109140,
+            "supplement_added_forms": 0,
+            "supplement_file": null,
+            "supplement_forms": 0
+          }
+        },
+        {
+          "blocks": 182,
+          "bytes": 499094,
+          "compaction": {
+            "candidate_headwords": 60165,
+            "candidate_labels_shortened": 36314,
+            "candidate_senses": 75036,
+            "candidate_synonyms": 149055,
+            "label_byte_limit": 48,
+            "label_rule": "whole-word prefix plus GEOS ellipsis within 48 bytes; original retained synonym if first token does not fit",
+            "second_sense": "prefer a different known POS; otherwise next best sense",
+            "selected_senses": 7425,
+            "selected_synonyms": 16489,
+            "sense_limit": 2,
+            "sense_order": "best retained synonym priority, then original sense order",
+            "source_headwords": 60165,
+            "source_senses": 90196,
+            "source_synonyms": 204073,
+            "synonym_order": "shared language priority; folded duplicates and self terms removed",
+            "synonyms_per_sense": 4
+          },
+          "entries": 4518,
+          "file": "EN_US.THS",
+          "kind": 2,
+          "language": "EN_US",
+          "selection": {
+            "candidate_records": 60165,
+            "estimated_bytes": 499094,
+            "max_bytes": 500000,
+            "omitted_records": 55647,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 4518,
+            "ranking_considered": 60165,
+            "selected_records": 4518
+          },
+          "sha256": "9e4883b317745668d7d5ba8bddc2e61a42e625aab98b2ff182812b6edba9d5aa"
+        },
+        {
+          "blocks": 374,
+          "bytes": 407350,
+          "entries": 43330,
+          "file": "EN_US.HYP",
+          "kind": 3,
+          "language": "EN_US",
+          "selection": {
+            "candidate_records": 43330,
+            "estimated_bytes": 407350,
+            "max_bytes": 500000,
+            "omitted_records": 0,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 43330,
+            "ranking_considered": 43330,
+            "selected_records": 43330
+          },
+          "sha256": "606343f3e84984575a972dfa98b9258eb5e9f978b02841e3877d0829116d5dde",
+          "vocabulary": {
+            "candidate_words_with_breaks": 43330,
+            "policy": "subset of folded selected DCT; nonempty break lists only",
+            "selected_dictionary_folded_forms": 60160,
+            "selected_dictionary_forms": 61720,
+            "selected_words_with_breaks": 43330
+          }
+        }
+      ],
+      "ranking": {
+        "fallback": "Unranked entries follow ranked entries; alphabetic words before simple hyphen/apostrophe forms, then other text; shorter forms first, then lowercase/title/other case and unsigned GEOS byte order. This is a deterministic heuristic, not measured corpus frequency.",
+        "file": "EN_US.priority.txt",
+        "kind": "source-guided-heuristic",
+        "ranked_keys": 79807,
+        "sha256": "8f71b9bb24c0b977762c3bfe147cc917ee3614f1e892386516731cfdba6d220f",
+        "source": "Authored essentials; historical WordNet semantic tag counts and attested inflection relatives; remaining WordNet lemmas."
+      },
+      "stem": "EN_US"
+    },
+    {
+      "coverage": {
+        "hyphenation": "patterns",
+        "thesaurus": "general",
+        "vocabulary": "compact source-guided subset"
+      },
+      "files": [
+        {
+          "blocks": 459,
+          "bytes": 499915,
+          "entries": 61763,
+          "file": "EN_GB.DCT",
+          "kind": 1,
+          "language": "EN_GB",
+          "selection": {
+            "candidate_records": 108778,
+            "estimated_bytes": 499915,
+            "max_bytes": 500000,
+            "omitted_records": 47015,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 61763,
+            "ranking_considered": 93636,
+            "selected_records": 61763
+          },
+          "sha256": "65b71489ea7220fccd773e2c6704e235ad145c353236487cf444c08ecb028b65",
+          "vocabulary": {
+            "candidate_forms": 108778,
+            "primary_file": "EN_GB.words.txt",
+            "primary_forms": 108778,
+            "supplement_added_forms": 0,
+            "supplement_file": null,
+            "supplement_forms": 0
+          }
+        },
+        {
+          "blocks": 183,
+          "bytes": 499983,
+          "compaction": {
+            "candidate_headwords": 60165,
+            "candidate_labels_shortened": 36312,
+            "candidate_senses": 75036,
+            "candidate_synonyms": 149048,
+            "label_byte_limit": 48,
+            "label_rule": "whole-word prefix plus GEOS ellipsis within 48 bytes; original retained synonym if first token does not fit",
+            "second_sense": "prefer a different known POS; otherwise next best sense",
+            "selected_senses": 7448,
+            "selected_synonyms": 16512,
+            "sense_limit": 2,
+            "sense_order": "best retained synonym priority, then original sense order",
+            "source_headwords": 60165,
+            "source_senses": 90196,
+            "source_synonyms": 204073,
+            "synonym_order": "shared language priority; folded duplicates and self terms removed",
+            "synonyms_per_sense": 4
+          },
+          "entries": 4525,
+          "file": "EN_GB.THS",
+          "kind": 2,
+          "language": "EN_GB",
+          "selection": {
+            "candidate_records": 60165,
+            "estimated_bytes": 499983,
+            "max_bytes": 500000,
+            "omitted_records": 55640,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 4525,
+            "ranking_considered": 60165,
+            "selected_records": 4525
+          },
+          "sha256": "33fdf02c418a0f104a426fc2b2591209cd1d60926a0f7636e7d4e31105a5753c"
+        },
+        {
+          "blocks": 363,
+          "bytes": 395371,
+          "entries": 41924,
+          "file": "EN_GB.HYP",
+          "kind": 3,
+          "language": "EN_GB",
+          "selection": {
+            "candidate_records": 41924,
+            "estimated_bytes": 395371,
+            "max_bytes": 500000,
+            "omitted_records": 0,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 41924,
+            "ranking_considered": 41924,
+            "selected_records": 41924
+          },
+          "sha256": "aea2e498c6dece1e2c3f102fd9e3ef2f6de0dd5b66f0776b5dcdfafda9518b14",
+          "vocabulary": {
+            "candidate_words_with_breaks": 41924,
+            "policy": "subset of folded selected DCT; nonempty break lists only",
+            "selected_dictionary_folded_forms": 60202,
+            "selected_dictionary_forms": 61763,
+            "selected_words_with_breaks": 41924
+          }
+        }
+      ],
+      "ranking": {
+        "fallback": "Unranked entries follow ranked entries; alphabetic words before simple hyphen/apostrophe forms, then other text; shorter forms first, then lowercase/title/other case and unsigned GEOS byte order. This is a deterministic heuristic, not measured corpus frequency.",
+        "file": "EN_GB.priority.txt",
+        "kind": "source-guided-heuristic",
+        "ranked_keys": 79758,
+        "sha256": "f1f15befe3ac35e1b18c3ac549625351f343984f51198acbd0b8bde66474098f",
+        "source": "Authored essentials; historical WordNet semantic tag counts and attested inflection relatives; remaining WordNet lemmas."
+      },
+      "stem": "EN_GB"
+    },
+    {
+      "coverage": {
+        "hyphenation": "patterns",
+        "thesaurus": "specialist",
+        "vocabulary": "compact source-guided subset"
+      },
+      "files": [
+        {
+          "blocks": 459,
+          "bytes": 499915,
+          "entries": 61535,
+          "file": "DE_DE.DCT",
+          "kind": 1,
+          "language": "DE_DE",
+          "selection": {
+            "candidate_records": 2152637,
+            "estimated_bytes": 499915,
+            "max_bytes": 500000,
+            "omitted_records": 2091102,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 61535,
+            "ranking_considered": 93636,
+            "selected_records": 61535
+          },
+          "sha256": "20656a8161d4df447115a34978e74c47f0da8006d6cfcf4cec4b27ec05ce52ed",
+          "vocabulary": {
+            "candidate_forms": 2152637,
+            "primary_file": "DE.words.txt",
+            "primary_forms": 2152637,
+            "supplement_added_forms": 0,
+            "supplement_file": null,
+            "supplement_forms": 0
+          }
+        },
+        {
+          "blocks": 227,
+          "bytes": 258145,
+          "compaction": {
+            "candidate_headwords": 3744,
+            "candidate_labels_shortened": 267,
+            "candidate_senses": 3974,
+            "candidate_synonyms": 4667,
+            "label_byte_limit": 48,
+            "label_rule": "whole-word prefix plus GEOS ellipsis within 48 bytes; original retained synonym if first token does not fit",
+            "second_sense": "prefer a different known POS; otherwise next best sense",
+            "selected_senses": 3974,
+            "selected_synonyms": 4667,
+            "sense_limit": 2,
+            "sense_order": "best retained synonym priority, then original sense order",
+            "source_headwords": 3744,
+            "source_senses": 4010,
+            "source_synonyms": 4758,
+            "synonym_order": "shared language priority; folded duplicates and self terms removed",
+            "synonyms_per_sense": 4
+          },
+          "entries": 3744,
+          "file": "DE_DE.THS",
+          "kind": 2,
+          "language": "DE_DE",
+          "selection": {
+            "candidate_records": 3744,
+            "estimated_bytes": 258145,
+            "max_bytes": 500000,
+            "omitted_records": 0,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 490,
+            "ranking_considered": 3744,
+            "selected_records": 3744
+          },
+          "sha256": "9303b6adfea0ce1a0e1d6c2a24bbe14ce9b4ec7875fb5c7650becce2046e4652"
+        },
+        {
+          "blocks": 459,
+          "bytes": 499915,
+          "entries": 53942,
+          "file": "DE_DE.HYP",
+          "kind": 3,
+          "language": "DE_DE",
+          "selection": {
+            "candidate_records": 58563,
+            "estimated_bytes": 499915,
+            "max_bytes": 500000,
+            "omitted_records": 4621,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 53942,
+            "ranking_considered": 58563,
+            "selected_records": 53942
+          },
+          "sha256": "ca8602720ccba470ba3cc584888f4342ede5fdea24317ab8cd17d659cb46d3da",
+          "vocabulary": {
+            "candidate_words_with_breaks": 58563,
+            "policy": "subset of folded selected DCT; nonempty break lists only",
+            "selected_dictionary_folded_forms": 61533,
+            "selected_dictionary_forms": 61535,
+            "selected_words_with_breaks": 53942
+          }
+        }
+      ],
+      "ranking": {
+        "fallback": "Unranked entries follow ranked entries; alphabetic words before simple hyphen/apostrophe forms, then other text; shorter forms first, then lowercase/title/other case and unsigned GEOS byte order. This is a deterministic heuristic, not measured corpus frequency.",
+        "file": "DE_DE.priority.txt",
+        "kind": "source-guided-heuristic",
+        "ranked_keys": 73124,
+        "sha256": "06102d8fa7e2899c4f670e4cb5e615a85e5df2a41f2c5866f3d3b0eaa1aff026",
+        "source": "Authored essentials and attested relatives; existing words also present as reviewed LOD German translation headwords, then attested relatives. Heuristic, not native corpus frequency."
+      },
+      "stem": "DE_DE"
+    },
+    {
+      "coverage": {
+        "hyphenation": "compound-only",
+        "thesaurus": "specialist",
+        "vocabulary": "compact source-guided subset"
+      },
+      "files": [
+        {
+          "blocks": 459,
+          "bytes": 499915,
+          "entries": 59881,
+          "file": "SV_SE.DCT",
+          "kind": 1,
+          "language": "SV_SE",
+          "selection": {
+            "candidate_records": 816350,
+            "estimated_bytes": 499915,
+            "max_bytes": 500000,
+            "omitted_records": 756469,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 59881,
+            "ranking_considered": 93636,
+            "selected_records": 59881
+          },
+          "sha256": "a22ee51df461efa3a52024b71c4374e460afaa173d7b05d7b415f7eb1e58c9a1",
+          "vocabulary": {
+            "candidate_forms": 816350,
+            "primary_file": "SV.words.txt",
+            "primary_forms": 816336,
+            "supplement_added_forms": 14,
+            "supplement_file": "SV.core-supplement.txt",
+            "supplement_forms": 14
+          }
+        },
+        {
+          "blocks": 387,
+          "bytes": 498933,
+          "compaction": {
+            "candidate_headwords": 8922,
+            "candidate_labels_shortened": 5405,
+            "candidate_senses": 9930,
+            "candidate_synonyms": 11690,
+            "label_byte_limit": 48,
+            "label_rule": "whole-word prefix plus GEOS ellipsis within 48 bytes; original retained synonym if first token does not fit",
+            "second_sense": "prefer a different known POS; otherwise next best sense",
+            "selected_senses": 7144,
+            "selected_synonyms": 8417,
+            "sense_limit": 2,
+            "sense_order": "best retained synonym priority, then original sense order",
+            "source_headwords": 8922,
+            "source_senses": 10297,
+            "source_synonyms": 12192,
+            "synonym_order": "shared language priority; folded duplicates and self terms removed",
+            "synonyms_per_sense": 4
+          },
+          "entries": 6364,
+          "file": "SV_SE.THS",
+          "kind": 2,
+          "language": "SV_SE",
+          "selection": {
+            "candidate_records": 8922,
+            "estimated_bytes": 498933,
+            "max_bytes": 500000,
+            "omitted_records": 2558,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 2408,
+            "ranking_considered": 8922,
+            "selected_records": 6364
+          },
+          "sha256": "8d88f1509151ab9e2250232598a7856f566190cede1f43e0822a90480377b64f"
+        },
+        {
+          "blocks": 155,
+          "bytes": 168859,
+          "entries": 17696,
+          "file": "SV_SE.HYP",
+          "kind": 3,
+          "language": "SV_SE",
+          "selection": {
+            "candidate_records": 17696,
+            "estimated_bytes": 168859,
+            "max_bytes": 500000,
+            "omitted_records": 0,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 17696,
+            "ranking_considered": 17696,
+            "selected_records": 17696
+          },
+          "sha256": "3cedd9cce0c64624c5bbaa7abc19b994518e65f09a373188b4966b837fe5ece5",
+          "vocabulary": {
+            "candidate_words_with_breaks": 17696,
+            "policy": "subset of folded selected DCT; nonempty break lists only",
+            "selected_dictionary_folded_forms": 59016,
+            "selected_dictionary_forms": 59881,
+            "selected_words_with_breaks": 17696
+          }
+        }
+      ],
+      "ranking": {
+        "fallback": "Unranked entries follow ranked entries; alphabetic words before simple hyphen/apostrophe forms, then other text; shorter forms first, then lowercase/title/other case and unsigned GEOS byte order. This is a deterministic heuristic, not measured corpus frequency.",
+        "file": "SV_SE.priority.txt",
+        "kind": "source-guided-heuristic",
+        "ranked_keys": 191341,
+        "sha256": "89cd27bdbafb54fe5ff2b19ecaa43cf9f57d4f3d22613734409936b65af9fc44",
+        "source": "Authored essentials; NST enter_se membership; observed speech/dictation source sets; lexical source analyses. No numeric frequency ranking."
+      },
+      "stem": "SV_SE"
+    },
+    {
+      "coverage": {
+        "hyphenation": "unavailable",
+        "thesaurus": "LOD-explicit",
+        "vocabulary": "compact source-guided subset"
+      },
+      "files": [
+        {
+          "blocks": 459,
+          "bytes": 499915,
+          "entries": 54530,
+          "file": "LB_LU.DCT",
+          "kind": 1,
+          "language": "LB_LU",
+          "selection": {
+            "candidate_records": 116235,
+            "estimated_bytes": 499915,
+            "max_bytes": 500000,
+            "omitted_records": 61705,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 47172,
+            "ranking_considered": 93636,
+            "selected_records": 54530
+          },
+          "sha256": "5e57f7ae6f64881aefdab5e2de7e2e047d4e8a2f9bb015f16e79920dcade3f40",
+          "vocabulary": {
+            "candidate_forms": 116235,
+            "primary_file": "LB.words.txt",
+            "primary_forms": 116235,
+            "supplement_added_forms": 0,
+            "supplement_file": null,
+            "supplement_forms": 0
+          }
+        },
+        {
+          "blocks": 307,
+          "bytes": 337014,
+          "compaction": {
+            "candidate_headwords": 7250,
+            "candidate_labels_shortened": 0,
+            "candidate_senses": 8327,
+            "candidate_synonyms": 10957,
+            "label_byte_limit": 48,
+            "label_rule": "whole-word prefix plus GEOS ellipsis within 48 bytes; original retained synonym if first token does not fit",
+            "second_sense": "prefer a different known POS; otherwise next best sense",
+            "selected_senses": 8327,
+            "selected_synonyms": 10957,
+            "sense_limit": 2,
+            "sense_order": "best retained synonym priority, then original sense order",
+            "source_headwords": 7250,
+            "source_senses": 8624,
+            "source_synonyms": 11460,
+            "synonym_order": "shared language priority; folded duplicates and self terms removed",
+            "synonyms_per_sense": 4
+          },
+          "entries": 7250,
+          "file": "LB_LU.THS",
+          "kind": 2,
+          "language": "LB_LU",
+          "selection": {
+            "candidate_records": 7250,
+            "estimated_bytes": 337014,
+            "max_bytes": 500000,
+            "omitted_records": 0,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 6677,
+            "ranking_considered": 7250,
+            "selected_records": 7250
+          },
+          "sha256": "04c49c73c7bb9a0e9fc552ab3ce6945d5e3b25be3ec9904bbf294a5ba9a8926e"
+        },
+        {
+          "blocks": 0,
+          "bytes": 64,
+          "entries": 0,
+          "file": "LB_LU.HYP",
+          "kind": 3,
+          "language": "LB_LU",
+          "selection": {
+            "candidate_records": 0,
+            "estimated_bytes": 64,
+            "max_bytes": 500000,
+            "omitted_records": 0,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 0,
+            "ranking_considered": 0,
+            "selected_records": 0
+          },
+          "sha256": "2f639414a9363805ed3eed5d8f39d466cadc6768fdf7842bc67aef864c0debca",
+          "vocabulary": {
+            "candidate_words_with_breaks": 0,
+            "policy": "subset of folded selected DCT; nonempty break lists only",
+            "selected_dictionary_folded_forms": 52779,
+            "selected_dictionary_forms": 54530,
+            "selected_words_with_breaks": 0
+          }
+        }
+      ],
+      "ranking": {
+        "fallback": "Unranked entries follow ranked entries; alphabetic words before simple hyphen/apostrophe forms, then other text; shorter forms first, then lowercase/title/other case and unsigned GEOS byte order. This is a deterministic heuristic, not measured corpus frequency.",
+        "file": "LB_LU.priority.txt",
+        "kind": "source-guided-heuristic",
+        "ranked_keys": 45446,
+        "sha256": "36b6de2efdee54d2240813e8da9332fe792640341b2179f5a38425092345eadf",
+        "source": "Authored essentials; LOD dictionary-example token attestations; reviewed LOD lemmas. Examples are not a general-language corpus."
+      },
+      "stem": "LB_LU"
+    },
+    {
+      "coverage": {
+        "hyphenation": "patterns",
+        "thesaurus": "specialist",
+        "vocabulary": "compact source-guided subset"
+      },
+      "files": [
+        {
+          "blocks": 459,
+          "bytes": 499915,
+          "entries": 67335,
+          "file": "FR_FR.DCT",
+          "kind": 1,
+          "language": "FR_FR",
+          "selection": {
+            "candidate_records": 138188,
+            "estimated_bytes": 499915,
+            "max_bytes": 500000,
+            "omitted_records": 70853,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 36567,
+            "ranking_considered": 93636,
+            "selected_records": 67335
+          },
+          "sha256": "70989a76adbbc293351766f5821b04f3f850e2e1c48e475d0aedeb8095ab1f0f",
+          "vocabulary": {
+            "candidate_forms": 138188,
+            "primary_file": "FR.words.txt",
+            "primary_forms": 138188,
+            "supplement_added_forms": 0,
+            "supplement_file": null,
+            "supplement_forms": 0
+          }
+        },
+        {
+          "blocks": 161,
+          "bytes": 183831,
+          "compaction": {
+            "candidate_headwords": 2443,
+            "candidate_labels_shortened": 231,
+            "candidate_senses": 2587,
+            "candidate_synonyms": 3028,
+            "label_byte_limit": 48,
+            "label_rule": "whole-word prefix plus GEOS ellipsis within 48 bytes; original retained synonym if first token does not fit",
+            "second_sense": "prefer a different known POS; otherwise next best sense",
+            "selected_senses": 2587,
+            "selected_synonyms": 3028,
+            "sense_limit": 2,
+            "sense_order": "best retained synonym priority, then original sense order",
+            "source_headwords": 2443,
+            "source_senses": 2615,
+            "source_synonyms": 3062,
+            "synonym_order": "shared language priority; folded duplicates and self terms removed",
+            "synonyms_per_sense": 4
+          },
+          "entries": 2443,
+          "file": "FR_FR.THS",
+          "kind": 2,
+          "language": "FR_FR",
+          "selection": {
+            "candidate_records": 2443,
+            "estimated_bytes": 183831,
+            "max_bytes": 500000,
+            "omitted_records": 0,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 406,
+            "ranking_considered": 2443,
+            "selected_records": 2443
+          },
+          "sha256": "391e9e2248b448182f1a736a6228e224592b172dbf34b6021007cb357d86b5f5"
+        },
+        {
+          "blocks": 447,
+          "bytes": 486847,
+          "entries": 58867,
+          "file": "FR_FR.HYP",
+          "kind": 3,
+          "language": "FR_FR",
+          "selection": {
+            "candidate_records": 58867,
+            "estimated_bytes": 486847,
+            "max_bytes": 500000,
+            "omitted_records": 0,
+            "optimality": "largest fitting tested prefix; not a global maximum claim",
+            "policy": "priority-prefix-bounded-size-search-v1",
+            "priority_hit_records": 31539,
+            "ranking_considered": 58867,
+            "selected_records": 58867
+          },
+          "sha256": "201fabb47bbc05e912eceaa0afd30b936e9146b23bb125ab542f8f1b6d8fa574",
+          "vocabulary": {
+            "candidate_words_with_breaks": 58867,
+            "policy": "subset of folded selected DCT; nonempty break lists only",
+            "selected_dictionary_folded_forms": 67335,
+            "selected_dictionary_forms": 67335,
+            "selected_words_with_breaks": 58867
+          }
+        }
+      ],
+      "ranking": {
+        "fallback": "Unranked entries follow ranked entries; alphabetic words before simple hyphen/apostrophe forms, then other text; shorter forms first, then lowercase/title/other case and unsigned GEOS byte order. This is a deterministic heuristic, not measured corpus frequency.",
+        "file": "FR_FR.priority.txt",
+        "kind": "source-guided-heuristic",
+        "ranked_keys": 36567,
+        "sha256": "dc5fb1b991e196c3af28865cb4046095c15e9808681a78e4845eaedfd0c30a15",
+        "source": "Authored essentials and attested relatives; existing words also present as reviewed LOD French translation headwords, then attested relatives. Heuristic, not native corpus frequency."
+      },
+      "stem": "FR_FR"
+    }
+  ],
+  "project": "OpenSpellGEOS"
+}
