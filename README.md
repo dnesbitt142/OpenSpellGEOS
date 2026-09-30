@@ -13,8 +13,8 @@ A Open Source spelling/thesaurus/hyphenation library for PC/GEOS
 `pmake full`
 
 ### How to install
-1. Copy `spell.geo` (or `spellec.geo for the EC version`) to `<Ensemble root folder>\SYSTEM`
-2. Download the [dictionary of your proffered language](https://github.com/dnesbitt142/OpenSpellGEOS/tree/aa1d4bc31e5afb6e3c46e577de94db77137d59f5/Dictionaries) and unpack the *.dct, *.gdi *.hyp and *.ths files to `<Ensemble root folder>\USERDATA\DICTS` (you may need to create the DICTS directory first).
+1. Copy `spell.geo` (or `spellec.geo` for the EC version) to `<Ensemble root folder>\SYSTEM`
+2. Download the [dictionary of your preferred language](https://github.com/dnesbitt142/OpenSpellGEOS/tree/aa1d4bc31e5afb6e3c46e577de94db77137d59f5/Dictionaries) and unpack the *.dct, *.gdi *.hyp and *.ths files to `<Ensemble root folder>\USERDATA\DICTS` (you may need to create the DICTS directory first).
 3. Once Ensemble is running, chose the dictionary in Preferences > Text > Choose New Main Dictionary (a restart may be required).
 
 Code is licensed under the Apache License 2.0, see [licenses](https://github.com/dnesbitt142/OpenSpellGEOS/tree/main/Dictionaries/BuildTools/Sources/licenses) for each supplied languages' license.
