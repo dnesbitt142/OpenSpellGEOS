@@ -27,7 +27,7 @@ Python tools for creating your own dictionaries, thesaurus and hyphenation files
 * Testing of every language.
 * Luxembourgish does not have a pre-set country ID in PC/GEOS, so is set to 0.
 * A empty user dictionary is not provided by default (the spellchecker will make one when user wards are added).
-* No word accents in .gdi files (used by Preferences).
+* No letter accents in .gdi files (used by Preferences).
 * Document formats of Dictionary (.dct), Hyphenation (.hyp) and Thesaurus (.ths) files.
 
 ## Other notes
