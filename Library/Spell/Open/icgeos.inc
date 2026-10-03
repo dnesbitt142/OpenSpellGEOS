@@ -42,6 +42,11 @@ typedef word LanguageDialect;
 #define OPEN_NOT_FOUND 11
 #define OPEN_NOMEM 15
 #define OPEN_NO_OPEN 16
+#define OPEN_USER_SAVE_ERROR 11
+#define OPEN_USER_LOAD_ERROR 12
+#define OPEN_USER_VERSION_ERROR 13
+#define OPEN_USER_MEMORY_ERROR 14
+#define OPEN_USER_SAVE_RESULT 10 /* UR_SER in Internal/spelllib.def. */
 #define OPEN_IGNORED 20
 #define OPEN_VERIFY 3
 #define OPEN_CORRECT 100
@@ -87,6 +92,9 @@ extern SemaphoreHandle spellSem;
 #pragma aux spellSem "spellSem";
 static MemHandle openUsersH;
 static word openUserReferences;
+
+/* Reuse the existing localized Strings pairs through the native notifier. */
+extern void _pascal OpenUserNotify(word errorCode);
 
 #pragma code_seg("CODE")
 
@@ -189,46 +197,59 @@ int _pascal OpenUserValid(OpenUserDictionary *usersP, word fileBytes)
     return count == usersP->count;
 }
 
-/* Load once per active library session; recover BAK only if USR is absent. */
+/* Return zero or SP-12/13/14; recover BAK only if USR is absent. */
 int _pascal OpenUserLoad(void)
 {
     OpenUserDictionary *usersP;
     FileHandle fileH;
     dword size;
+    word readSize;
     int result;
     openUsersH = MemAllocSetOwner(GeodeGetCodeProcessHandle(),
                                  sizeof(OpenUserDictionary), HF_DYNAMIC | HF_SHARABLE,
                                  HAF_ZERO_INIT);
     if (!openUsersH) {
-        return 0;
+        return OPEN_USER_MEMORY_ERROR;
     }
     usersP = (OpenUserDictionary *)MemLock(openUsersH);
     usersP->magic[0] = 'O';
     usersP->magic[1] = 'S';
     usersP->magic[2] = 'U';
     usersP->magic[3] = '1';
-    result = 0;
+    result = OPEN_USER_LOAD_ERROR;
     FilePushDir();
     if (FileSetCurrentPath(SP_USER_DATA, "DICTS")) {
         fileH = FileOpen("OPENUSER.USR", FILE_ACCESS_R | FILE_DENY_W);
         if (!fileH && ThreadGetError() == ERROR_FILE_NOT_FOUND) {
             fileH = FileOpen("OPENUSER.BAK", FILE_ACCESS_R | FILE_DENY_W);
             if (!fileH && ThreadGetError() == ERROR_FILE_NOT_FOUND) {
-                result = 1;
+                result = 0;
             }
         }
         if (fileH) {
             size = FileSize(fileH);
-            if (size >= 8 && size <= sizeof(OpenUserDictionary) &&
-                FileRead(fileH, usersP, (word)size, FALSE) == (word)size) {
-                result = OpenUserValid(usersP, (word)size);
+            readSize = 4;
+            if (size >= 8 && size <= sizeof(OpenUserDictionary)) {
+                readSize = (word)size;
             }
-            FileClose(fileH, FALSE);
+            /* A future version may exceed OSU1's bounded table size. */
+            if (size >= 4 && FileRead(fileH, usersP, readSize, FALSE) == readSize) {
+                if (usersP->magic[0] == 'O' && usersP->magic[1] == 'S' &&
+                    usersP->magic[2] == 'U' && usersP->magic[3] != '1') {
+                    result = OPEN_USER_VERSION_ERROR;
+                } else if (readSize == size &&
+                           OpenUserValid(usersP, readSize)) {
+                    result = 0;
+                }
+            }
+            if (FileClose(fileH, FALSE)) {
+                result = OPEN_USER_LOAD_ERROR;
+            }
         }
     }
     FilePopDir();
     MemUnlock(openUsersH);
-    if (!result) {
+    if (result) {
         MemFree(openUsersH);
         openUsersH = 0;
     }
@@ -328,6 +349,8 @@ word _pascal _export ICGEOSplInitICBuff(MemHandle bufferH)
     word language;
     word dialect;
     word result;
+    word userError;
+    userError = 0;
     bufferP = (ICBuff *)MemLock(bufferH);
     bufferP->ICB_initFlags = 0;
     contextH = MemAllocSetOwner(GeodeGetCodeProcessHandle(),
@@ -343,7 +366,10 @@ word _pascal _export ICGEOSplInitICBuff(MemHandle bufferH)
             OpenGeoOpen(&contextP->dictionary, 1,
                         bufferP->ICB_masterFname) == 1) {
             ThreadPSem(spellSem);
-            if (openUsersH || OpenUserLoad()) {
+            if (!openUsersH) {
+                userError = OpenUserLoad();
+            }
+            if (!userError) {
                 ++openUserReferences;
                 result = OPEN_OK;
             } else {
@@ -373,6 +399,10 @@ word _pascal _export ICGEOSplInitICBuff(MemHandle bufferH)
         }
     }
     MemUnlock(bufferH);
+    if (userError) {
+        /* Notify only after releasing the semaphore and movable blocks. */
+        OpenUserNotify(userError);
+    }
     return result;
 }
 
@@ -790,6 +820,8 @@ dword _pascal OpenUserEdit(const unsigned char *wordP, int remove)
             if (OpenUserSave(newP)) {
                 result = OPEN_OK;
                 userResult = remove ? 0 : 1;
+            } else {
+                userResult = OPEN_USER_SAVE_RESULT;
             }
             MemUnlock(replacementH);
             if (result == OPEN_OK) {
@@ -807,6 +839,10 @@ dword _pascal OpenUserEdit(const unsigned char *wordP, int remove)
         MemUnlock(openUsersH);
     }
     ThreadVSem(spellSem);
+    if (userResult == OPEN_USER_SAVE_RESULT) {
+        /* The old list is still live and the failed candidate was freed. */
+        OpenUserNotify(OPEN_USER_SAVE_ERROR);
+    }
     return ((dword)userResult << 16) | result;
 }
 
