@@ -1,0 +1,76 @@
+PASS: OpenSpellGEOS required vocabulary, exact 1000000-byte ceiling, native GDI, THS/HYP compaction and atomic publication
+PASS: C89 reader, 4002 lookups, corruption, cache, charset, builders and suggestions
+EN_US native GDI label: English (American)
+EN_US spelling/accent/case samples: color, hello, dictionary
+PASS EN_US.DCT: 109140 records, 863641 bytes, 13 native samples, SHA-256 b9119e107a04c1483de78a6b7ae7f02debc2e7009cb751be41bf458b40b8a800
+EN_US thesaurus sample: rapid -> speedy
+PASS EN_US.THS: 9269 records, 999148 bytes, 11 native samples, SHA-256 8b37822230496889e45d84326177c1963bfacc14104b17e6747b54ee034fd454
+EN_US available hyphenation golden samples and omitted-key misses: PASS
+PASS EN_US.HYP: 76793 records, 692668 bytes, 12 native samples, SHA-256 9f0c50d12228c479a47003097dcf73b5ecdaec0ffbf0cbb6a55430b0a47bbe0f
+PASS EN_US: every hyphenated key belongs to the selected dictionary
+EN_GB native GDI label: English (British)
+EN_GB spelling/accent/case samples: colour, hello, dictionary
+PASS EN_GB.DCT: 108778 records, 860374 bytes, 13 native samples, SHA-256 17e9f4d62bd70b2a5c3284fcad6897fdf7d75a4c10ac8867dff84bfa68e60246
+EN_GB thesaurus sample: rapid -> speedy
+PASS EN_GB.THS: 9303 records, 999677 bytes, 11 native samples, SHA-256 8149cec28c1d414c1417317f304735d54a8c3a799920f17c323f390a0f994b45
+EN_GB available hyphenation golden samples and omitted-key misses: PASS
+PASS EN_GB.HYP: 75449 records, 680689 bytes, 13 native samples, SHA-256 549f1307da8f1e31702f948acdfd81ddbbd05f9310ff906508009495b61b544f
+PASS EN_GB: every hyphenated key belongs to the selected dictionary
+DE_DE native GDI label: Deutsch (Deutschland)
+DE_DE required everyday vocabulary: 1102 native lookups PASS
+DE_DE spelling/accent/case samples: Haus, Häuser, Straße, Wörterbuch
+PASS DE_DE.DCT: 130396 records, 999766 bytes, 14 native samples, SHA-256 5b978a74338c8c6e49d62c47098e2cb6b063bc3a2aeb6ed20cbeae9b5d10ccca
+DE_DE thesaurus sample: Haus -> Gebäude
+PASS DE_DE.THS: 3744 records, 258145 bytes, 10 native samples, SHA-256 8c166a9e4ee8378f52267b66b366e053db36f0de84b75ea5e71d3d99aa96ef03
+PASS DE_DE.HYP: 115252 records, 999766 bytes, 10 native samples, SHA-256 3ef43f178c4aba06113107310ae23015470868d61ee1604316a79517333606c0
+PASS DE_DE: every hyphenated key belongs to the selected dictionary
+SV_SE native GDI label: Svenska
+SV_SE required everyday vocabulary: 990 native lookups PASS
+SV_SE spelling/accent/case samples: hus, möjlighet, språk, det, i, som, på, den, av, de, hej, heja, hallå
+PASS SV_SE.DCT: 113629 records, 999766 bytes, 23 native samples, SHA-256 c583c3f120a58ac9e5e5e7a503b3942a03ffb5cbfb3651d2cde51e22e645a17e
+SV_SE thesaurus sample: arbete -> mekaniskt arbete
+PASS SV_SE.THS: 8922 records, 723565 bytes, 11 native samples, SHA-256 f377ea8f647b6808be65a83e7bcb3665d5989f9c7af5743a30a3a1eb3e3725cd
+PASS SV_SE.HYP: 41780 records, 417151 bytes, 10 native samples, SHA-256 f56af6357afb952353c33295d6181e20cd49c39334cf99ea045bf1610a015387
+PASS SV_SE: every hyphenated key belongs to the selected dictionary
+LB_LU native GDI label: Lëtzebuergesch
+LB_LU spelling/accent/case samples: Haus, Lëtzebuerg, Wuert
+PASS LB_LU.DCT: 116235 records, 933337 bytes, 13 native samples, SHA-256 2c6d41dd253fb66920d43343458cdb8a79fc953f837458196932d86fe2e683e0
+LB_LU thesaurus sample: schnell -> séier
+PASS LB_LU.THS: 7250 records, 337014 bytes, 11 native samples, SHA-256 04c49c73c7bb9a0e9fc552ab3ce6945d5e3b25be3ec9904bbf294a5ba9a8926e
+LB_LU hyphenation: explicitly unavailable; empty no-break file verified
+PASS LB_LU.HYP: 0 records, 64 bytes, 0 native samples, SHA-256 2f639414a9363805ed3eed5d8f39d466cadc6768fdf7842bc67aef864c0debca
+PASS LB_LU: every hyphenated key belongs to the selected dictionary
+FR_FR native GDI label: Français (France)
+FR_FR spelling/accent/case samples: maison, français, école
+PASS FR_FR.DCT: 132192 records, 999766 bytes, 12 native samples, SHA-256 8db39a3e9454644e117f787de0edcefb35e7047dc3a7404058e4cdf2e49dc519
+FR_FR thesaurus sample: maison -> immeuble
+PASS FR_FR.THS: 2443 records, 183831 bytes, 11 native samples, SHA-256 391e9e2248b448182f1a736a6228e224592b172dbf34b6021007cb357d86b5f5
+PASS FR_FR.HYP: 115530 records, 999766 bytes, 10 native samples, SHA-256 8bfb60bb17038de4992ea6dcd52f3da1d3d4dd363d28fdad904e83f82e93324d
+PASS FR_FR: every hyphenated key belongs to the selected dictionary
+PASS EN_US.DCT: repeated compact selection/build from source is byte-identical
+PASS EN_GB.DCT: repeated compact selection/build from source is byte-identical
+PASS DE_DE.DCT: repeated compact selection/build from source is byte-identical
+PASS SV_SE.DCT: repeated compact selection/build from source is byte-identical
+PASS LB_LU.DCT: repeated compact selection/build from source is byte-identical
+PASS FR_FR.DCT: repeated compact selection/build from source is byte-identical
+PASS OpenSpellGEOS release audit: 1176105 total records in all 18 files
+PASS EN_US.DCT retains all 61720 previous keys; 47420 additional keys
+PASS EN_US.THS retains all 4518 previous keys; 4751 additional keys
+PASS EN_US.HYP retains all 43330 previous keys; 33463 additional keys
+PASS EN_GB.DCT retains all 61763 previous keys; 47015 additional keys
+PASS EN_GB.THS retains all 4525 previous keys; 4778 additional keys
+PASS EN_GB.HYP retains all 41924 previous keys; 33525 additional keys
+PASS DE_DE.DCT retains all 130396 previous keys; 0 additional keys
+PASS DE_DE.THS retains all 3744 previous keys; 0 additional keys
+PASS DE_DE.HYP retains all 115252 previous keys; 0 additional keys
+PASS SV_SE.DCT retains all 113629 previous keys; 0 additional keys
+PASS SV_SE.THS retains all 8922 previous keys; 0 additional keys
+PASS SV_SE.HYP retains all 41780 previous keys; 0 additional keys
+PASS LB_LU.DCT retains all 54530 previous keys; 61705 additional keys
+PASS LB_LU.THS retains all 7250 previous keys; 0 additional keys
+PASS LB_LU.HYP retains all 0 previous keys; 0 additional keys
+PASS FR_FR.DCT retains all 67335 previous keys; 64857 additional keys
+PASS FR_FR.THS retains all 2443 previous keys; 0 additional keys
+PASS FR_FR.HYP retains all 58867 previous keys; 56663 additional keys
+PASS all previous vocabulary retained; German/Swedish payloads identical.
+PASS final native/English guide metrics, hashes and DOS-safe filenames.

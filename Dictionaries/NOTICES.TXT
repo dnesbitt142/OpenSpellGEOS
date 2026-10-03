@@ -71,6 +71,11 @@ The dictionary is disk-backed; a large file is not loaded into conventional RAM.
 Its vintage and the accepted spellings still need native-language quality review.
 No productivity rule invents additional German compounds at runtime.
 
+DE.core-supplement.txt separately adds four independently authored standard
+forms absent from that snapshot: E-Mail, E-Mails, E-Mail-Adresse and
+E-Mail-Adressen. This supplement is Apache-2.0 and is not attributed to the
+Free German Dictionary. It supplies no invented synonym or hyphenation point.
+
 # French spelling
 
 FR.words.txt uses Grady Ward's public-domain Moby Language II French list.
@@ -224,7 +229,8 @@ claims; source counts are not necessarily final installed entry counts.
 
 # Compact release selection
 
-OpenSpellGEOS now limits each DCT, THS and HYP file to 500,000 bytes or less.
+OpenSpellGEOS limits each DCT, THS and HYP file in all six profiles to 1,000,000
+decimal bytes or less.
 The normalized source inventories below describe the available upstream input,
 not the number of words retained in the compact release. BUILD.json records the
 selected counts, omitted counts, exact bytes and selection policy.
@@ -240,10 +246,18 @@ create thesaurus synonyms. Shorter unranked words supply a deterministic
 fallback. None of this is represented as a modern multilingual frequency list.
 
 Sources/make_priorities.py, Data/compact-core-words.json and
-Data/compact-priority-report.json document the exact ranking recipe. The
-ranked inputs preserve the licenses of their sources. The small authored
-Swedish supplement Data/SV.core-supplement.txt restores fourteen basic words
-absent from the pinned NST source and is licensed under Apache-2.0. Its full
+Data/compact-priority-report.json document the ranking recipe. The priority
+snapshots retain their original source-guided order and original seed hash;
+the report separately identifies the current required-core overlay and hash.
+The builder places the 990 Swedish and 1114 German authored core forms first
+and fails if a core form is missing from the source/supplement or selected DCT.
+This is an authored coverage list, not a measured corpus-frequency ranking or
+an independent native-speaker review. No vocabulary is compiled into the engine.
+
+The ranked inputs preserve the licenses of their sources. The authored
+Swedish supplement Data/SV.core-supplement.txt restores 47 standard forms
+absent from the pinned NST source; the German supplement adds four E-Mail
+forms. These separate supplements are licensed under Apache-2.0. The full
 license is included in licenses/Apache-2.0.txt (DICTS/LICENSES/APACHE2.TXT).
 
 Thesaurus payloads retain at most two source senses and four source synonyms
