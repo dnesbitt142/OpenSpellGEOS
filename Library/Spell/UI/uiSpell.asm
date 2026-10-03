@@ -956,7 +956,7 @@ GetICBuffCommon	proc	near		uses	ax
 	je	5$
 	mov	bx, offset SpellInitNoUserDictString
 	cmp	ax, IC_RET_NO_USER_DICT
-	je	5$
+	je	dismiss		; OpenSpell already reported SP-12, 13 or 14.
 	mov	bx, offset SpellInitBadLangString
 	cmp	ax, IC_RET_BAD_LANG
 	je	5$
@@ -965,6 +965,7 @@ GetICBuffCommon	proc	near		uses	ax
 	mov	ax, (CDT_ERROR shl offset CDBF_DIALOG_TYPE or GIT_NOTIFICATION shl offset CDBF_INTERACTION_TYPE or mask CDBF_SYSTEM_MODAL)
 	call	SpellPutupBox
 
+dismiss:
 	push	bp
 	mov	ax, MSG_GEN_GUP_INTERACTION_COMMAND
 	mov	cx, IC_DISMISS
@@ -2724,6 +2725,8 @@ endif
 
 	cmp	ax, IC_RET_OK
 	je	continue
+	cmp	dx, UR_SER
+	je	exit			; OpenSpell already reported SP-11.
 	mov	bx, offset SpellUserDictFullString
 	cmp	dx, UR_USER_DICT_FULL
 	je	30$
