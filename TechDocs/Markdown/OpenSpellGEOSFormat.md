@@ -2,11 +2,12 @@
 
 SPDX-License-Identifier: Apache-2.0
 
-This document specifies the replacement lexical file format and the stdlib-only
-host builder in Library/Spell/Open/buildlex.py. The format is independent of the
-retired proprietary dictionary files. Their contents are neither inputs nor
-conversion sources. Licensing and coverage of each distributed language dataset
-are documented separately in the language provenance report.
+This document specifies the replacement lexical file format and the stdlib-
+only host builder in Dictionaries/BuildTools/buildlex.py. The format is
+independent of the retired proprietary dictionary files. Their contents are
+neither inputs nor conversion sources. Licensing and coverage of each
+distributed language dataset are documented separately in the language
+provenance report.
 
 OpenSpellGEOS compact releases impose a separate hard ceiling of 500000
 decimal bytes on each complete DCT, THS and HYP file. This selection policy
@@ -285,11 +286,19 @@ distinct HYP files even though they share a language family.
 
 ## Building data files
 
-Python 3 is sufficient; there are no pip dependencies. Run commands from the
-source tree. Output names are explicitly chosen by the caller and should use
-DOS-compatible language stems. Copy the resulting files, together with the
-matching GDI descriptors, into Ensemble/USERDATA/DICTS. The preference descriptor
-and geos.ini selection are covered by the integration guide.
+Python 3 is sufficient for building data; there are no pip dependencies. Run
+the commands below from the OpenSpellGEOS repository root. Python tools live
+in Dictionaries/BuildTools; the C runtime remains in Library/Spell/Open. For a
+six-profile rebuild, extract the bundled Data directory once:
+
+    python3 -m zipfile -e Dictionaries/BuildTools/Data.zip Dictionaries/BuildTools
+
+If Dictionaries/BuildTools/Data already exists, omit extraction and preserve
+its contents. The wrapper uses that directory by default. Output names are
+explicitly chosen by the caller and should use DOS-compatible language stems.
+Copy the resulting files, together with the matching GDI descriptors, into
+Ensemble/USERDATA/DICTS. The preference descriptor and geos.ini selection are
+covered by the integration guide.
 
 The individual buildlex.py examples below specify the low-level conversion
 interfaces. They do not perform compact corpus selection: the caller must
@@ -298,7 +307,7 @@ accepts 64 through 500000 inclusive. A larger encoded result fails atomically
 without replacing an existing output. Build the six-profile compact release
 through the wrapper, which chooses fitting candidates:
 
-    python3 Library/Spell/Open/build_languages.py --output build/OpenSpellGEOS/DICTS --max-bytes 500000
+    python3 Dictionaries/BuildTools/build_languages.py --output build/OpenSpellGEOS/DICTS --max-bytes 500000
 
 The default --max-bytes value is 500000, inclusive. The wrapper accepts a lower
 limit from 64 bytes upward and rejects values above 500000. It uses
@@ -311,7 +320,7 @@ A dictionary source is UTF-8 text with one complete surface form per line.
 Leading/trailing whitespace is stripped; blank lines and lines starting # are
 ignored. Preserve source capitalization. For example:
 
-    python3 Library/Spell/Open/buildlex.py dictionary words.txt EN_GB.DCT --language EN_GB
+    python3 Dictionaries/BuildTools/buildlex.py dictionary words.txt EN_GB.DCT --language EN_GB
 
 A thesaurus source is a UTF-8 JSON object. For example:
 
@@ -324,7 +333,7 @@ A thesaurus source is a UTF-8 JSON object. For example:
 Supported POS strings are adjective, noun, adverb, verb and unknown. Build it
 with:
 
-    python3 Library/Spell/Open/buildlex.py thesaurus synonyms.json EN_GB.THS --language EN_GB
+    python3 Dictionaries/BuildTools/buildlex.py thesaurus synonyms.json EN_GB.THS --language EN_GB
 
 Plain pattern input contains whitespace-separated UTF-8 Liang patterns with
 embedded ASCII digits. Percent comments are stripped. To extract literal
@@ -341,11 +350,11 @@ They must already be unique, ordered integers within the word.
 
 For English rules with left minimum 2 and right minimum 3:
 
-    python3 Library/Spell/Open/buildlex.py hyphenation words.txt EN_GB.HYP --language EN_GB --patterns hyph-en-gb.tex --tex --left-min 2 --right-min 3
+    python3 Dictionaries/BuildTools/buildlex.py hyphenation words.txt EN_GB.HYP --language EN_GB --patterns hyph-en-gb.tex --tex --left-min 2 --right-min 3
 
 For explicit exceptions only:
 
-    python3 Library/Spell/Open/buildlex.py hyphenation words.txt SV.HYP --language SV --exceptions sv-exceptions.json --left-min 2 --right-min 2
+    python3 Dictionaries/BuildTools/buildlex.py hyphenation words.txt SV.HYP --language SV --exceptions sv-exceptions.json --left-min 2 --right-min 2
 
 The CLI default minima are 2 and 2. Use the actual minima prescribed by the
 chosen language source; do not assume that the default applies to English.
@@ -397,9 +406,19 @@ buffer contents. Do not treat -1 as a spelling error or as a valid empty file.
 olSuggest returns 1 or -1 and writes complete NUL-terminated alternatives only;
 its length counts the bytes including those terminators.
 
-Run the host regression check with:
+The reader regression check and release audit also need a host C compiler. The
+packaged scripts resolve openlex.inc and openlex.h beside selfcheck.py, while
+this repository keeps those runtime files in Library/Spell/Open. Stage copies
+in a temporary directory, leaving the repository layout intact. From the
+repository root, run:
 
-    python3 Library/Spell/Open/selfcheck.py
+    check_dir=$(mktemp -d)
+    cp Dictionaries/BuildTools/buildlex.py Dictionaries/BuildTools/compactlex.py \
+       Dictionaries/BuildTools/selfcheck.py Dictionaries/BuildTools/audit_release.py "$check_dir/"
+    cp Library/Spell/Open/openlex.inc Library/Spell/Open/openlex.h "$check_dir/"
+    python3 "$check_dir/selfcheck.py"
+
+Keep check_dir for the release audit below; remove it after both checks.
 
 It compiles the identical reader with a C compiler in strict C89 mode and uses
 Python stdlib ctypes to exercise it. It checks 4002 dictionary entries across
@@ -415,7 +434,7 @@ interactive Ensemble verification on the intended hardware or emulator.
 
 Run the compact-selection checks with:
 
-    python3 Library/Spell/Open/compactcheck.py
+    python3 Dictionaries/BuildTools/compactcheck.py
 
 These check priority ordering, exact estimated versus written sizes, the
 inclusive ceiling, THS sense/synonym/label policy, GEOS ellipsis encoding,
@@ -425,25 +444,33 @@ data; the release audit below checks the actual selected language files.
 
 For a completed six-language build, run the release audit separately:
 
-    python3 Library/Spell/Open/audit_release.py /path/to/DICTS
+    python3 "$check_dir/audit_release.py" /path/to/DICTS \
+        --sources "$PWD/Dictionaries/BuildTools/Data"
+    rm -r "$check_dir"
 
-Add --sources /path/to/Data if the normalized inputs are stored elsewhere.
-This audit walks every record and payload in all eighteen linguistic files,
-checks whole-file hashes against BUILD.json, verifies global ordering and blob
-coverage, queries real language samples through the compiled C reader, checks
-US/GB hyphenation exceptions, and repeats compact English dictionary selection
-and building from the pinned inputs to check byte-identical output. It also
-checks the per-file byte ceiling, compact THS limits and selection counts
-against the manifest. Its explicit empty-file
-check for an unavailable hyphenation source is not a claim of that language's
-hyphenation coverage.
+Use the actual completed output directory in place of /path/to/DICTS.
+--sources names the extracted normalized inputs; it is required here because
+the temporary scripts do not have a Data directory beside them. The supplied
+Dictionaries folder contains language ZIPs. To audit those release files,
+unpack them outside the repository and assemble their DCT, THS, HYP and GDI
+files directly in one separate DICTS directory with the supplied BUILD.json,
+NOTICES.TXT and LICENSES. This audit walks every record and payload in all
+eighteen linguistic files, checks whole-file hashes against BUILD.json,
+verifies global ordering and blob coverage, queries real language samples
+through the compiled C reader, checks US/GB hyphenation exceptions, and
+repeats compact English dictionary selection and building from the pinned
+inputs to check byte-identical output. It also checks the per-file byte
+ceiling, compact THS limits and selection counts against the manifest. Its
+explicit empty-file check for an unavailable hyphenation source is not a claim
+of that language's hyphenation coverage.
 
-The production translation unit is Open/spellopen.c. Its implementation
-fragments use the .inc suffix because this source tree's mkmf discovers direct
-subdirectory .c files as independent modules. openlex.inc is ordinary C89 and
-is compiled unchanged with the host compiler's -x c option by the checks.
-Host fixtures must not be placed as extra .c files directly in Open, where
-mkmf would incorrectly include them in the GEOS library.
+The production translation unit is Library/Spell/Open/spellopen.c. Its
+implementation fragments use the .inc suffix because this source tree's mkmf
+discovers direct subdirectory .c files as independent modules. openlex.inc is
+ordinary C89 and is compiled unchanged with the host compiler's -x c option by
+the checks. Host fixtures must not be placed as extra .c files directly in
+Library/Spell/Open, where mkmf would incorrectly include them in the GEOS
+library.
 
 Implementation helpers intentionally use external object-file linkage with
 unique ol/Open prefixes. In the supplied toolchain, Watcom's LPUBDEF records

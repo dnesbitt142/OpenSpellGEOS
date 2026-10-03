@@ -13,12 +13,36 @@ its sources; compatibility with an Apache-2.0 project does not erase those
 notices or turn every upstream dataset into an Apache-2.0-licensed work.
 See the delivered data provenance and license files before redistributing.
 
+## Repository layout
+
+Paths in these guides are relative to the OpenSpellGEOS repository root unless
+a different working directory is stated.
+
+- Library/Spell contains the library source; Library/Spell/Open contains the
+  runtime C reader, adapters and spelling host fixture.
+- Installed/Library/Spell contains the matching build overlay.
+- Dictionaries contains six language ZIPs, each with one language folder and
+  its DCT, THS, HYP and GDI files, plus BUILD.json, NOTICES.TXT and LICENSES.
+- Dictionaries/BuildTools contains the Python builders and checks.
+- Dictionaries/BuildTools/Sources contains acquisition and normalization scripts,
+  provenance manifests and upstream notices.
+- Dictionaries/BuildTools/Data.zip contains the normalized Data directory;
+  extract it beside the archive before rebuilding the six-profile data set.
+- TechDocs/Markdown contains these guides.
+
+Copy the Library and Installed overlays to the matching PC/GEOS source root
+when building the geode. Keep the data tools in their repository locations;
+they are separate from Library/Spell/Open. The repository does not include
+BUILD_STATUS.md, earlier build logs or runtime screenshots. Historical
+evidence mentioned below refers to the earlier integration package.
+
 ## Read first
 
 This is a replacement implementation requiring integration validation, not a
-claim of completed testing on a physical 286. Read the build evidence supplied
-with the package. Host-side tests, target C compilation, a linked geode, and a
-successful EC/NC boot are distinct checks and are reported separately.
+claim of completed testing on a physical 286. Historical build evidence is
+separate from this repository. Host-side tests, target C compilation, a linked
+geode, and a successful EC/NC boot are distinct checks and are reported
+separately.
 
 The 2026-09-30 corrective revision addresses the reported suggestion and
 repeated-dialog failures with unchanged compact language files. It jointly
@@ -162,13 +186,15 @@ Back up the existing Spell geode, geos.ini, and DICTS directory. Close Ensemble
 before replacing a loaded library. Test EC and NC separately with their
 matching library builds. Do not install a host object file as a .geo file.
 
-Copy a selected profile's .DCT, .THS, .HYP and .GDI files into
+Unpack the selected language ZIP from Dictionaries into a temporary location.
+Each archive contains a language folder, such as English_UK or Luxembourgish.
+Copy that folder's .DCT, .THS, .HYP and .GDI files directly into
 Ensemble/USERDATA/DICTS. Multiple profiles may coexist. Each profile's three
-compact linguistic files together use at most 1500000 decimal bytes, plus
-its small GDI record and accompanying notices. Install only the profiles
-needed. Retain NOTICES.TXT and LICENSES with copies.
-The build helper includes those notices automatically. The lookup
-path uses SP_USER_DATA (the same standard path as SP_PUBLIC_DATA).
+compact linguistic files together use at most 1500000 decimal bytes, plus its
+small GDI record and accompanying notices. Install only the profiles needed.
+Retain NOTICES.TXT and LICENSES with copies. The build helper includes those
+notices automatically. The lookup path uses SP_USER_DATA (the same standard
+path as SP_PUBLIC_DATA).
 
 Select a supplied dictionary through Preferences. The .GDI parser writes the
 existing [text] language, dialect, languageName, and dictionary keys and asks
@@ -202,10 +228,11 @@ limits, and each GDI remains below the reader's 8000-byte file limit.
 
 ## Building and validating data
 
-See OpenSpellGEOSFormat.md for the byte-accurate DCT/THS/HYP format, strict source
-schemas, builder commands, and portable reader tests. The distribution also
-includes normalized source snapshots so dictionary builds can be repeated
-without scraping a website or depending on a moving upstream branch.
+See OpenSpellGEOSFormat.md for the byte-accurate DCT/THS/HYP format, strict
+source schemas, builder commands, and portable reader tests. The normalized
+source snapshots are packaged in Dictionaries/BuildTools/Data.zip. See
+OpenSpellGEOSData.md for extraction and commands from this repository root;
+ordinary data rebuilding requires no network access.
 
 Changing a source dataset requires reviewing its license again, preserving
 notices, recording the source version and checksum, rebuilding the files,
@@ -239,8 +266,12 @@ the exit status: this script can report completion despite missing geodes.
 Set up xdotool and DOSBox or pcgeos-basebox as instructed in the supplied
 README before attempting debugger/target validation.
 
-After applying this overlay, regenerate the Spell build in the matching
-Installed folder because a C translation unit and dependencies were added:
+Copy this repository's Library and Installed folders into ROOT_DIR, merging
+with the existing PC/GEOS tree. The runtime source stays in
+Library/Spell/Open; the Python tools and linguistic files do not belong in the
+Installed build. After applying this overlay, regenerate the Spell build in
+the matching Installed folder because a C translation unit and dependencies
+were added:
 
     cd "$ROOT_DIR/Installed/Library/Spell"
     yes | clean

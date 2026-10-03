@@ -44,7 +44,9 @@ baselineec2-check-third-settled.png.
 
 ## Cause in the supplied shared UI source
 
-The relevant source path is Library/SpecUI/CommonUI/CWin:
+The relevant path in the full PC/GEOS source tree is
+Library/SpecUI/CommonUI/CWin. These shared UI sources are not part of the
+OpenSpellGEOS overlay:
 
 1. cwinClassOther.asm, OpenWinPrepForReOpen, sends
    MSG_OL_WIN_PREPARE_FIELD_SIZE_CHANGE when a window closes, even when no

@@ -1,14 +1,52 @@
 # OpenSpellGEOS: change record
 
 This records the delta against the user's supplied pcgeos-CI-latest source
-archive. The deliverable is a source overlay, generated linguistic data and
-build evidence. It does not contain the proprietary language databases or
-replace unrelated applications, drivers, SDK tools or build rules.
+archive. The repository contains the source overlay, generated linguistic
+data, Python build tools and technical guides. Earlier build/runtime evidence
+referenced here is not included in this GitHub layout. The overlay does not
+contain proprietary language databases or replace unrelated applications,
+drivers, SDK tools or build rules.
 
 The compact release is branded OpenSpellGEOS and renames these six documents
 from SpellOpen*.md to OpenSpellGEOS*.md. Technical identifiers such as OLX1,
 OpenLexCode, Spell export names, OPENUSER.USR and Library/Spell/Open remain
 unchanged. .DCT remains the canonical spelling extension.
+
+## Personal dictionary errors and project layout, 2026-10-01
+
+The technical guides now follow the GitHub repository layout. Python builders
+and checks live in Dictionaries/BuildTools, acquisition and normalization
+helpers in its Sources directory, and the normalized snapshot is packaged as
+Data.zip. Library/Spell/Open retains the runtime sources. Data-building
+commands extract that snapshot and write a separate output directory. Reader
+checks use temporary copies beside the scripts, preserving the supplied folder
+structure.
+
+Personal-dictionary failures now select the existing localized SP-11 through
+SP-14 notifications. Save errors retain the previous live list; load errors
+separate damaged/inaccessible files, an unsupported OSU version and failure to
+allocate the shared personal table. Notifications occur after releasing locks
+and the semaphore. Existing OPEN_ERROR, SIF_USER_DICT_ERR and UR_SER results
+let the UI suppress duplicate generic messages without changing the public
+ABI. A missing USR and BAK still starts an empty list without an error. Host
+adapter checks cover these failure results, notification timing and failed-
+save rollback. See OpenSpellGEOSIntegrationIC.md for the detailed conditions
+and recovery rules.
+
+The supplied dictionary, hyphenation, thesaurus, GDI and build-input files are
+unchanged. Unreferenced compatibility entry points and compiler support
+symbols are independent of the previously unreferenced SP-11 through SP-14
+strings.
+
+Verification for this revision passed the host spelling fault checks and six
+real-data correction checks against the unchanged English UK and Luxembourgish
+dictionaries. The staged portable-reader selfcheck and compact-selection
+checks also passed. A clean build against an exact copy of this source overlay
+passed mkmf, pmake depend and pmake -L 4 full, producing both NC and EC geodes
+with the supplied Open Watcom compiler and locally built Linux SDK tools.
+The SP-11 through SP-14 Strings warnings and GEOSNOTIFY warning are gone; the
+retained compatibility-symbol warnings remain. Interactive GEOS dialogs were
+not exercised in this run.
 
 ## Corrective revision, 2026-09-30
 
@@ -213,14 +251,15 @@ Static constant data retains its original storage class.
 
 ## New host tools and data
 
-Open/compactlex.py applies pinned profile rankings, bounded byte-budget
-selection and the compact THS policy before the existing OLX1 writer runs.
-Its exact size estimator is checked against the final file; selection does
-not claim a globally maximal record count because front coding and block
-boundaries make successive prefix sizes nonmonotonic. Compact THS values keep
-at most two senses and four synonyms per sense, with whole-word labels limited
-to 48 GEOS bytes. HYP candidates come only from selected DCT words and retain
-only nonempty legal-break records before their own file-budget selection.
+Dictionaries/BuildTools/compactlex.py applies pinned profile rankings, bounded
+byte-budget selection and the compact THS policy before the existing OLX1
+writer runs. Its exact size estimator is checked against the final file;
+selection does not claim a globally maximal record count because front coding
+and block boundaries make successive prefix sizes nonmonotonic. Compact THS
+values keep at most two senses and four synonyms per sense, with whole-word
+labels limited to 48 GEOS bytes. HYP candidates come only from selected DCT
+words and retain only nonempty legal-break records before their own file-
+budget selection.
 
 The per-profile priority metadata states whether ranking comes from source
 counts, attested sets or heuristics. Manually chosen common/function words
@@ -228,70 +267,80 @@ are prioritized first. These source signals are not interchangeable with a
 general-language frequency corpus, and native-language review remains needed.
 OpenSpellGEOSData.md records the language-specific rules and omissions.
 
-Open/Sources/make_priorities.py regenerates six ranked UTF-8 lists and their
-report from pinned WordNet, NST and LOD archives. It verifies archive and
-normalized input hashes, retains only already accepted spellings, and records
-missing authored seeds. Data/compact-core-words.json provides manually chosen
-essentials. Data/SV.core-supplement.txt separately supplies 14 reviewed basic
-Swedish words missing from NST under Apache-2.0; no new hyphenation positions
-are inferred for them. These authored inputs and generated priority outputs
-are pinned in buildset.json and documented separately from upstream data.
+Dictionaries/BuildTools/Sources/make_priorities.py regenerates six ranked
+UTF-8 lists and their report from pinned WordNet, NST and LOD archives. It
+verifies archive and normalized input hashes, retains only already accepted
+spellings, and records missing authored seeds. Data/compact-core-words.json
+provides manually chosen essentials. Data/SV.core-supplement.txt separately
+supplies 14 reviewed basic Swedish words missing from NST under Apache-2.0; no
+new hyphenation positions are inferred for them. These authored inputs and
+generated priority outputs are pinned in buildset.json and documented
+separately from upstream data.
 
-Open/buildlex.py builds an individual dictionary, thesaurus or precomputed
-hyphenation file from documented UTF-8 source schemas. It handles GEOS
-encoding, deterministic sorting/front coding, shared large values, Liang
-patterns, literal TeX pattern/exception blocks and explicit no-break
-exceptions. It rejects invalid input, writes atomically, and refuses to
-overwrite the input file itself.
-Its public CLI now checks the complete encoded output against --max-bytes
-(default 500000, accepted range 64 through 500000) before replacement. It
-rejects oversized inputs rather than choosing a smaller vocabulary; use the
-six-profile wrapper when priority-based compact selection is required.
+Dictionaries/BuildTools/buildlex.py builds an individual dictionary, thesaurus
+or precomputed hyphenation file from documented UTF-8 source schemas. It
+handles GEOS encoding, deterministic sorting/front coding, shared large
+values, Liang patterns, literal TeX pattern/exception blocks and explicit no-
+break exceptions. It rejects invalid input, writes atomically, and refuses to
+overwrite the input file itself. Its public CLI now checks the complete
+encoded output against --max-bytes (default 500000, accepted range 64 through
+500000) before replacement. It rejects oversized inputs rather than choosing a
+smaller vocabulary; use the six-profile wrapper when priority-based compact
+selection is required.
 
-Open/build_languages.py checks every pinned input hash in Data/buildset.json,
-builds six profiles in a temporary directory under the default 500000-byte
-per-file ceiling, writes compatible OpenSpellGEOS .GDI records
-and BUILD.json, and publishes only a completed new output directory. It also
-copies full redistribution notices into DOS-compatible LICENSES filenames and
-NOTICES.TXT. It explicitly reports the empty Luxembourgish hyphenation file.
+Dictionaries/BuildTools/build_languages.py checks every pinned input hash in
+Data/buildset.json, builds six profiles in a temporary directory under the
+default 500000-byte per-file ceiling, writes compatible OpenSpellGEOS .GDI
+records and BUILD.json, and publishes only a completed new output directory.
+It also copies full redistribution notices into DOS-compatible LICENSES
+filenames and NOTICES.TXT. It explicitly reports the empty Luxembourgish
+hyphenation file.
 
-Open/Sources contains pinned URL/size/SHA-256 manifests, permissive license
-texts, full provenance/limitation documents, download helpers, lexical and
-LOD/terminology normalizers, and a normalization check. Open/Data contains
-the normalized UTF-8 snapshots, pattern/exception inputs, omission reports,
-authored compact inputs, ranked word lists and their provenance report.
-Ordinary data builds are offline and require only Python's standard library.
-Refreshing from original upstream archives has separate documented download
-and extraction requirements. No proprietary lexical source is present.
+Dictionaries/BuildTools/Sources contains pinned URL/size/SHA-256 manifests,
+permissive license texts, full provenance/limitation documents, download
+helpers, lexical and LOD/terminology normalizers, and a normalization check.
+Dictionaries/BuildTools/Data.zip packages the Data directory; after extraction
+beside the archive, Data contains the normalized UTF-8 snapshots,
+pattern/exception inputs, omission reports, authored compact inputs, ranked
+word lists and their provenance report. Ordinary data builds are offline and
+require only Python's standard library. Refreshing from original upstream
+archives has separate documented download and extraction requirements. No
+proprietary lexical source is present.
 
-The delivered DICTS contains six each of .DCT, .THS, .HYP and .GDI, plus the
-build manifest and redistribution notices. English US/UK spelling and
-hyphenation stay distinct. Thesaurus data preserves real source synonym
-relations; translations or related terms are not invented as synonyms.
+The supplied Dictionaries folder contains six language ZIPs, each with a
+language folder holding its .DCT, .THS, .HYP and .GDI files. The build
+manifest and redistribution notices accompany the archives. English US/UK
+spelling and hyphenation stay distinct. Thesaurus data preserves real source
+synonym relations; translations or related terms are not invented as synonyms.
 
 ## Verification source and documentation
 
-Open/selfcheck.py compiles the actual portable C core in strict C89 mode and
-tests lookup, edit distance, malformed data, cache boundaries, failed reads,
-reopen invalidation, encoding and builder behavior. Open/audit_release.py
-independently walks every shipped record, checks hashes and payload schemas,
-and exercises native-C lookups against actual multilingual samples.
-Open/compactcheck.py checks ranking, exact byte estimation, the inclusive
-ceiling, THS/HYP selection policy, supplement merging and atomic publication.
+Dictionaries/BuildTools/selfcheck.py compiles the actual portable C core in
+strict C89 mode and tests lookup, edit distance, malformed data, cache
+boundaries, failed reads, reopen invalidation, encoding and builder behavior.
+Dictionaries/BuildTools/audit_release.py independently walks every shipped
+record, checks hashes and payload schemas, and exercises native-C lookups
+against actual multilingual samples. Dictionaries/BuildTools/compactcheck.py
+checks ranking, exact byte estimation, the inclusive ceiling, THS/HYP
+selection policy, supplement merging and atomic publication.
 
-Open/test_icgeos.test and Open/tests/test_openht.test provide small host GEOS
-shims for the actual adapter implementations. They force relocation after
-unlock and exercise ownership, buffer bounds, failure cleanup, ABI-facing
-results and personal-file persistence failures. Test malloc/free is confined
-to the host fixtures. No test framework or host binary is a target dependency.
+Library/Spell/Open/test_icgeos.test provides host GEOS shims for the actual
+spelling adapter. It forces relocation after unlock and exercises ownership,
+buffer bounds, failure cleanup, ABI-facing results and personal-file
+persistence failures. The historical tests/test_openht.test fixture is not
+included in this repository. Test malloc/free is confined to host fixtures. No
+test framework or host binary is a target dependency. See
+OpenSpellGEOSFormat.md for staging the reader checks alongside the Python
+scripts in this layout.
 
 OpenSpellGEOS.md explains integration, build order, memory and installation.
-OpenSpellGEOSFormat.md specifies the byte-level format and individual builders.
-OpenSpellGEOSData.md covers all six sources, coverage, licenses and full rebuilds.
-OpenSpellGEOSIntegrationIC.md documents the spelling ABI and OPENUSER.USR format.
-OpenSpellGEOSIntegrationHT.md documents the IH/ET ABI and wrapper repairs.
-This file gives the overall change record. BUILD_STATUS.md and the selected
-logs in the delivered evidence folder distinguish passes from blocked checks.
+OpenSpellGEOSFormat.md specifies the byte-level format and individual
+builders. OpenSpellGEOSData.md covers all six sources, coverage, licenses and
+full rebuilds. OpenSpellGEOSIntegrationIC.md documents the spelling ABI and
+OPENUSER.USR format. OpenSpellGEOSIntegrationHT.md documents the IH/ET ABI and
+wrapper repairs. This file gives the overall change record. Historical
+BUILD_STATUS.md and selected logs distinguished passes from blocked checks in
+the earlier evidence package; those files are not present in this repository.
 
 ## Deliberate limits
 

@@ -28,10 +28,12 @@ Western European language data. They are not a DBCS implementation.
 
 ## Build organization and calling conventions
 
-Open/spellopen.c is the sole compiled C source in this module. It includes
-the production .inc files. This is intentional: mkmf discovers C files in
-immediate module directories. Host tests have a .test extension in Open/tests
-so the geode build cannot accidentally include main or host libc code.
+Library/Spell/Open/spellopen.c is the sole compiled C source in this module.
+It includes the production .inc files. This is intentional: mkmf discovers C
+files in immediate module directories. Host fixtures use a .test extension so
+the geode build cannot accidentally include main or host libc code. The
+earlier IH/ET tests/test_openht.test fixture is not present in this
+repository; only the spelling test_icgeos.test fixture is supplied.
 
 IHhyp and SLcnv use GEOS Pascal calling convention. Pascal arguments are
 pushed left to right. IHhyp therefore declares the word pointer first and the
@@ -226,21 +228,21 @@ and expanded chunk arrays also consume memory. These figures are not a claim
 that an entire Ensemble installation fits in conventional memory without its
 normal swap configuration.
 
-Run the independent adapter regression checks from Library/Spell/Open:
+The earlier integration package's independent IH/ET adapter regression
+fixture, tests/test_openht.test, is not included in this repository. The
+following results describe that historical check and cannot be reproduced with
+the supplied files alone. For the available reader and data audits, use the
+commands in OpenSpellGEOSFormat.md.
 
-    cc -std=c89 -Wall -Wextra -Wno-unknown-pragmas -x c \
-        tests/test_openht.test -o test_openht
-    ./test_openht
-
-The test deliberately moves every fake heap allocation after unlock, checks
-library ownership and sharable allocation, verifies bitmap boundaries and
-the two text representations, tests unknown grammar, rejects every prefix
-truncation of a valid THS record, rejects unsafe delimiters and grammar bytes,
-checks output canaries, and verifies that all allocated handles are freed.
-The same test also passes with the host compiler's undefined-behavior
-sanitizer. A LeakSanitizer attempt could not run in this environment because
-its process inspection via /proc was unavailable; it is not reported as a
-successful address/leak-sanitized run.
+The historical test deliberately moves every fake heap allocation after
+unlock, checks library ownership and sharable allocation, verifies bitmap
+boundaries and the two text representations, tests unknown grammar, rejects
+every prefix truncation of a valid THS record, rejects unsafe delimiters and
+grammar bytes, checks output canaries, and verifies that all allocated handles
+are freed. The same test also passes with the host compiler's undefined-
+behavior sanitizer. A LeakSanitizer attempt could not run in this environment
+because its process inspection via /proc was unavailable; it is not reported
+as a successful address/leak-sanitized run.
 
 The supplied 16-bit OpenWatcom compiler accepted the initial adapter in both
 EC and NC modes with 8086-compatible code generation and no diagnostics.

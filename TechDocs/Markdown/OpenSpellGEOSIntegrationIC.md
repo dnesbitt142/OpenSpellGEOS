@@ -19,10 +19,11 @@ provided by the proprietary spelling engine. Library/Spell/Open/geosbridge.inc
 and geosbridge.h implement GEOS file operations shared with the thesaurus and
 hyphenation adapters. The portable reader is openlex.inc and openlex.h.
 
-The .inc modules are ordinary C89 source included by Open/spellopen.c. This
-single production .c file is intentional: the existing mkmf discovery would
-otherwise compile both the aggregator and each module and introduce duplicate
-symbols. Host-only tests use the .test suffix for the same reason.
+The .inc modules are ordinary C89 source included by
+Library/Spell/Open/spellopen.c. This single production .c file is intentional:
+the existing mkmf discovery would otherwise compile both the aggregator and
+each module and introduce duplicate symbols. Host-only tests use the .test
+suffix for the same reason.
 
 The public spell geode export order, public assembly interfaces, ICBuff
 allocation size and spelling-thread model are unchanged. The adapter uses the
@@ -223,6 +224,35 @@ become an empty dictionary: initialization fails with the user-dictionary
 error flag. If neither USR nor BAK exists, initialization starts an empty
 personal list. A leftover TMP is never automatically trusted.
 
+## Personal dictionary error reporting
+
+The adapter uses the existing localized GEOS SP-11 through SP-14 messages:
+
+- SP-11 reports failure to save a personal edit. The candidate memory block is
+  freed, the previous live list remains active, and the disk rollback/backup
+  rules above preserve the last saved copy where possible.
+- SP-12 reports failure to select the directory, open, read or close the saved
+  file, or validate its length and contents. An existing damaged USR is not
+  hidden by loading BAK.
+- SP-13 reports a readable file beginning with OSU whose fourth signature byte
+  is an unsupported version instead of 1.
+- SP-14 reports failure to allocate the shared 4096-byte personal table during
+  loading. It is distinct from allocation failure for the main spelling state.
+
+OpenUserLoad returns zero on success or the corresponding SP-12, SP-13 or
+SP-14 code. Missing both OPENUSER.USR and OPENUSER.BAK starts an empty list
+without a notification. A failed load returns the existing OPEN_ERROR result
+and SIF_USER_DICT_ERR initialization flag; a failed save returns OPEN_ERROR in
+AX and the existing UR_SER (10) user result in DX.
+
+OpenUserNotify in ICS/geos_asmcalls.asm selects the existing Strings pairs and
+calls the native GEOS notification path. Notification happens after releasing
+the spelling semaphore and movable-memory locks. Save notification also waits
+until the failed candidate is freed. The spelling and user-dictionary UI skip
+the duplicate generic SP-07, SP-10 or SP-01 dialog only for a failure already
+reported through this path. Other error handling and the public ABI remain
+unchanged.
+
 The semaphore serializes users of this loaded spell library, not external
 editors. Personal files must not be edited or replaced externally while a
 spell session is active. DOS rename and commit cannot guarantee survival of
@@ -261,20 +291,38 @@ establish that an entire Ensemble workload fits a particular 640 KiB machine.
 
 ## Verification
 
-The supplied Open/test_icgeos.test includes the actual production adapter with
-host-only memory, file and lexical-reader shims. It covers initialization,
-forced block relocation, casing, punctuation offsets and smart apostrophes,
-double-word flags, empty-input suggestion completion, jointly ranked real-data
-corrections, title/all-cap projection, exact-case preservation, duplicate
-removal, every alternate-tail offset, ignore/reset, display-case preservation, cross-client
-personal changes, short-write/commit/rename rollback, corrupt-file rejection,
-backup recovery ignore-list exhaustion, allocation-failure cleanup and complete handle cleanup.
+The supplied Library/Spell/Open/test_icgeos.test includes the actual
+production adapter with host-only memory, file and lexical-reader shims. It
+covers initialization, forced block relocation, casing, punctuation offsets
+and smart apostrophes, double-word flags, empty-input suggestion completion,
+jointly ranked real-data corrections, title/all-cap projection, exact-case
+preservation, duplicate removal, every alternate-tail offset, ignore/reset,
+display-case preservation, cross-client personal changes, short-
+write/commit/rename rollback, corrupt-file rejection, backup recovery, ignore-
+list exhaustion, allocation-failure cleanup and complete handle cleanup. It
+also checks SP-11 through SP-14 selection, missing-file initialization without
+notification, notification after releasing locks and the semaphore, and
+failed-save retention of the previous live dictionary.
 
-From Library/Spell/Open, run:
+The repository does not bundle PC/GEOS CInclude headers. Set ROOT_DIR to the
+PC/GEOS source or SDK root containing CInclude. From this repository root, run
+(the build directory may already exist):
 
+    mkdir -p build/OpenSpellGEOS
     cc -x c -std=c89 -Wall -Wextra -Wno-unknown-pragmas \
-       -I../../../CInclude test_icgeos.test -o test_icgeos
-    ./test_icgeos /absolute/path/to/DICTS
+       -I"$ROOT_DIR/CInclude" Library/Spell/Open/test_icgeos.test \
+       -o build/OpenSpellGEOS/test_icgeos
+    build/OpenSpellGEOS/test_icgeos
+
+That invocation runs the fault and behavior checks without release files. To
+also check real-data suggestions, pass a directory containing EN_GB.DCT and
+LB_LU.DCT directly, for example the separately rebuilt six-profile set:
+
+    build/OpenSpellGEOS/test_icgeos /absolute/path/to/DICTS
+
+Dictionaries itself contains language ZIPs rather than flat DCT files. To test
+the supplied data, unpack the ZIPs outside the repository and copy the files
+from their language folders into one separate DICTS directory.
 
 The test compiler and malloc/free are used only in this host fixture. Production
 code uses the GEOS memory APIs exclusively. The fixture cannot replace actual

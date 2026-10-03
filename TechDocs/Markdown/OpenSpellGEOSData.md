@@ -174,19 +174,27 @@ is absent from the underlying THS source and is not claimed as supported.
 
 # Release layout
 
-Library/Spell/Open/Data contains the normalized UTF-8 source snapshots,
-six priority lists, compact-priority-report.json, the authored
-compact-core-words.json and SV.core-supplement.txt, and buildset.json.
-Every consumed input has a SHA-256 entry in that manifest.
-Library/Spell/Open/build_languages.py verifies all recorded inputs before
+Paths below are relative to the OpenSpellGEOS repository root unless another
+working directory is stated. Dictionaries contains six language ZIPs, each
+holding a language folder with its DCT, THS, HYP and GDI files. BUILD.json,
+NOTICES.TXT and LICENSES accompany the archives. Keep the supplied archives
+and notices intact when rebuilding into a separate output directory.
+
+Dictionaries/BuildTools/Data.zip contains a top-level Data directory. After
+extraction beside the archive, Dictionaries/BuildTools/Data contains the
+normalized UTF-8 source snapshots, six priority lists, compact-priority-
+report.json, the authored compact-core-words.json and SV.core-supplement.txt,
+and buildset.json. Every consumed input has a SHA-256 entry in that manifest.
+Dictionaries/BuildTools/build_languages.py verifies all recorded inputs before
 building. A changed input is an error; the build never silently accepts it.
 
-Library/Spell/Open/Sources contains the acquisition and normalization helpers,
-the three upstream provenance manifests, source documentation, full notices in
-licenses/ and lexicons/, and the source-boundary regression checks. Large raw
-upstream archives are excluded from the release. The helpers fetch those exact
-archives when reproducing the normalized snapshots. Ordinary binary rebuilding
-uses Data and the bundled Sources notices and does not require network access.
+Dictionaries/BuildTools/Sources contains the acquisition and normalization
+helpers, the three upstream provenance manifests, source documentation, full
+notices in licenses/ and lexicons/, and the source-boundary regression checks.
+Large raw upstream archives are excluded from the release. The helpers fetch
+those exact archives when reproducing the normalized snapshots. Ordinary
+binary rebuilding uses Data and the bundled Sources notices and does not
+require network access.
 
 All installed DCT, THS, HYP and GDI files belong in USERDATA/DICTS. GDI records
 register the profiles in Preferences. The file-format and integration details
@@ -351,16 +359,22 @@ and large raw upstream archives are excluded from the release.
 
 # Rebuilding installed files offline
 
-From the PC/GEOS source root, choose an output directory that does not exist:
+From the OpenSpellGEOS repository root, extract the bundled snapshot once:
 
-    python3 Library/Spell/Open/build_languages.py --output build/OpenSpellGEOS/DICTS --max-bytes 500000
+    python3 -m zipfile -e Dictionaries/BuildTools/Data.zip Dictionaries/BuildTools
 
-The command uses Library/Spell/Open/Data by default. It verifies every input,
-builds into staging, then exposes the completed set. It refuses to overwrite an
-existing output directory. --max-bytes defaults to 500000; values from 64
-through 500000 are accepted, and values above the ceiling are rejected. A lower
-limit selects a smaller corpus; it does not change the format or improve
-coverage. The resulting BUILD.json records installed counts,
+This creates Dictionaries/BuildTools/Data. If that directory already exists,
+keep it intact and omit extraction. Choose an output directory that does not
+exist; use a separate directory rather than the supplied Dictionaries folder:
+
+    python3 Dictionaries/BuildTools/build_languages.py --output build/OpenSpellGEOS/DICTS --max-bytes 500000
+
+The command uses Dictionaries/BuildTools/Data by default. It verifies every
+input, builds into staging, then exposes the completed set. It refuses to
+overwrite an existing output directory. --max-bytes defaults to 500000; values
+from 64 through 500000 are accepted, and values above the ceiling are
+rejected. A lower limit selects a smaller corpus; it does not change the
+format or improve coverage. The resulting BUILD.json records installed counts,
 file sizes, file hashes, input hashes and coverage declarations. Use these
 installed counts when describing the binary release; source counts can differ
 because canonical keys merge during case folding and the compact selector
@@ -372,7 +386,7 @@ The host needs Python 3 and 7z, 7zz or bsdtar for the German source archive.
 The other archives are read with Python's standard library. This work can use
 hundreds of megabytes of host memory and is not intended for a 286.
 
-From Library/Spell/Open/Sources run:
+From Dictionaries/BuildTools/Sources run:
 
     python3 fetch_lexicons.py
     python3 fetch_sources.py
@@ -389,12 +403,12 @@ is unsupported, its already-validated headword becomes the label and this loss
 of explanatory detail is counted. No replacement spelling is invented.
 
 To reproduce both normalization and ranking into a separate Data directory,
-return to Library/Spell/Open and run the following. Normalized files come from
-Sources/normalized. Authored priority seeds and the Swedish supplement come
-from the shipped Data snapshot; they are maintained source inputs, not outputs
-of an upstream normalizer. Derived priority lists and their report are rebuilt
-in the next step. All copied inputs are checked before any copy is made, and
-the shipped buildset.json is preserved exactly:
+return to Dictionaries/BuildTools and run the following. Normalized files come
+from Sources/normalized. Authored priority seeds and the Swedish supplement
+come from the shipped Data snapshot; they are maintained source inputs, not
+outputs of an upstream normalizer. Derived priority lists and their report are
+rebuilt in the next step. All copied inputs are checked before any copy is
+made, and the shipped buildset.json is preserved exactly:
 
     python3 - <<'PY'
     import hashlib
@@ -461,6 +475,11 @@ identify whether the source, normalizer, encoding rules or omission policy
 changed. The original Data snapshot remains sufficient for offline rebuilding.
 
 # Maintaining an intentionally changed source release
+
+Run this maintenance workflow from Dictionaries/BuildTools, with the shipped
+Data snapshot already extracted and Sources/normalized already regenerated. It
+describes an optional future data update, not a requirement to rebuild the
+current release.
 
 Updating source data is a deliberate maintenance change, not a checksum repair.
 Before accepting new input, review its authoritative license and provenance,
