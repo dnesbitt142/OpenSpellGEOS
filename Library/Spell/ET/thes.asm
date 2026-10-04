@@ -558,6 +558,28 @@ foundEnd:
 	mov	dx, di			; dx = offset start of substring
 	dec	cx			; don't copy the period
 
+	; OpenSpellGEOS uses this prefix only to frame parser boundaries.
+	; Strip it before storing text used by both definition displays.
+	cmp	cx, 7
+	jb	storeMeaning
+	mov	bx, dx
+	cmp	{byte}es:[bx+0], 'S'
+	jne	storeMeaning
+	cmp	{byte}es:[bx+1], 'e'
+	jne	storeMeaning
+	cmp	{byte}es:[bx+2], 'n'
+	jne	storeMeaning
+	cmp	{byte}es:[bx+3], 's'
+	jne	storeMeaning
+	cmp	{byte}es:[bx+4], 'e'
+	jne	storeMeaning
+	cmp	{byte}es:[bx+5], ':'
+	jne	storeMeaning
+	cmp	{byte}es:[bx+6], ' '
+	jne	storeMeaning
+	add	dx, 7
+	sub	cx, 7
+storeMeaning:
 	mov	ax, cx			; size = cx
 	inc	ax			; plus null terminator 
 DBCS <	shl	ax, 1			; # chars -> # bytes		>
