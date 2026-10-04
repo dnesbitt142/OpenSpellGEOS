@@ -255,7 +255,9 @@ be below 1600 for each sense. The sum over all labels of label length plus
 exceed 4096 bytes. These limits preserve the existing UI buffers.
 
 The adapter prefixes each meaning with Sense: and replaces interior periods
-as required by the old parser. This is display framing, not new semantic data.
+as required by the old parser. This is internal parser framing, not new semantic data.
+The meanings parser removes the exact leading "Sense: " prefix before storing
+definition entries, so it is absent from both the list and definition text.
 Unknown POS is retained truthfully; it is not assigned to the noun class.
 Case-fold aliases are merged, and identical encoded senses are deduplicated.
 

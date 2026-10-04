@@ -150,7 +150,9 @@ The last meaning is followed by another period and a zero byte. Interior
 label periods become semicolons. This preserves the existing parser's rule
 that a period followed by an ASCII capital starts the next meaning; the
 prefix works equally with French or German labels beginning with an accented
-letter. Synonyms are comma separated and end with a period and zero byte.
+letter. ThesaurusMeaningsParse removes this exact leading prefix before storing
+each definition in the chunk array. The list and selected-definition text
+therefore display the label without "Sense: ". Synonyms are comma separated and end with a period and zero byte.
 
 Unknown part of speech is preserved rather than invented. Disk value 255
 becomes grammar-array value 4. The built-in controller has a fifth "(?) "
